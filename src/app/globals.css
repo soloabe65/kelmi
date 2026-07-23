@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+:root {
+  --background: #faf9f6;
+  --foreground: #1a1a1a;
+  --primary: #C5A55A;
+  --primary-dark: #B8943E;
+  --secondary: #1B3A3B;
+  --secondary-light: #2A5556;
+  --accent: #D4A574;
+  --neutral-50: #faf9f6;
+  --neutral-100: #f0ede8;
+  --neutral-200: #e0dbd3;
+  --neutral-300: #c4bdb2;
+  --neutral-400: #a39b8e;
+  --neutral-500: #837a6d;
+  --neutral-600: #655e53;
+  --neutral-700: #4f4941;
+  --neutral-800: #3d3832;
+  --neutral-900: #2a2723;
+  --radius: 0.5rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-secondary: var(--secondary);
+  --color-secondary-light: var(--secondary-light);
+  --color-accent: var(--accent);
+  --color-neutral-50: var(--neutral-50);
+  --color-neutral-100: var(--neutral-100);
+  --color-neutral-200: var(--neutral-200);
+  --color-neutral-300: var(--neutral-300);
+  --color-neutral-400: var(--neutral-400);
+  --color-neutral-500: var(--neutral-500);
+  --color-neutral-600: var(--neutral-600);
+  --color-neutral-700: var(--neutral-700);
+  --color-neutral-800: var(--neutral-800);
+  --color-neutral-900: var(--neutral-900);
+  --font-sans: var(--font-geist-sans);
+  --font-serif: var(--font-playfair);
+  --radius: var(--radius);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  * {
+    scroll-behavior: smooth;
+  }
+}
