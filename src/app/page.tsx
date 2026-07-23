@@ -39,7 +39,7 @@ const amenities = [
   {
     label: "Infinity Pool",
     desc: "Heated outdoor pool with panoramic views",
-    image: "https://images.unsplash.com/photo-1576013551627-0cc20b1c5e4e?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1575424908893-3e7a96b68e2f?w=600&q=80",
   },
   {
     label: "Fitness Center",
@@ -63,7 +63,7 @@ const testimonials = [
     name: "Chinwe Obi",
     role: "Wedding, Port Harcourt",
     text: "Our wedding at Kelmi was absolutely magical. The team went above and beyond every expectation. The venue was breathtaking!",
-    image: "https://images.unsplash.com/photo-1589156280159-27698b41f60e?w=150&q=80",
+    image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=150&q=80",
   },
   {
     name: "Emeka Okafor",
@@ -75,7 +75,7 @@ const testimonials = [
     name: "Blessing Adeyemi",
     role: "Spa Weekend, Ughelli",
     text: "I came for a weekend and never wanted to leave. The spa treatments were world-class and the staff treated me like royalty.",
-    image: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=150&q=80",
+    image: "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=150&q=80",
   },
 ]
 
