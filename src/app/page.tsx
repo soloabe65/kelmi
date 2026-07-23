@@ -1,11 +1,19 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import { ArrowRight, Star, MapPin, Phone, Wifi, Dumbbell, Waves, Utensils } from "lucide-react"
 import { fadeUp, staggerContainer, staggerItem } from "@/lib/animations"
 import { Section, SectionHeader } from "@/components/ui/section"
 import { Card, CardImage, CardContent } from "@/components/ui/card"
+
+const heroImages = [
+  "/images/suite-presidential.jpg",
+  "/images/suite-executive.jpg",
+  "/images/venue-ballroom.jpg",
+  "/images/dining-golden-fork.jpg",
+]
 
 const suites = [
   {
@@ -54,11 +62,31 @@ const testimonials = [
 ]
 
 export default function Home() {
+  const [currentImage, setCurrentImage] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % heroImages.length)
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <>
       {/* Hero */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden bg-secondary">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-secondary" />
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentImage}
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${heroImages[currentImage]})` }}
+          />
+        </AnimatePresence>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-secondary/90" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--color-primary)_0%,_transparent_70%)] opacity-10" />
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
           <motion.div

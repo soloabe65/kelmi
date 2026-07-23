@@ -55,25 +55,25 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
           >
             <span className="text-primary tracking-[0.3em] uppercase text-sm font-medium">
-              Since 2020
+              Since 2018
             </span>
             <h2 className="font-serif text-3xl md:text-4xl text-secondary mt-4 leading-tight">
               A Legacy of Warmth & Hospitality
             </h2>
             <div className="mt-6 space-y-4 text-neutral-500 leading-relaxed">
               <p>
-                Nestled in the heart of picturesque landscapes, Kelmi Lodge & Event Center was born
-                from a vision to create a sanctuary where modern luxury meets timeless hospitality.
+                Incorporated in Ughelli South, Delta State, Nigeria with Registration Number{" "}
+                <strong>2660739</strong>, Kelmi Lodge & Event Center was born from a vision to create
+                a sanctuary where modern luxury meets timeless hospitality.
               </p>
               <p>
-                Our founders, driven by a passion for exceptional experiences, transformed this
-                historic estate into a premier destination for discerning travelers and memorable
-                events.
+                Our founders, driven by a passion for exceptional experiences, established this
+                premier destination along the DSC Expressway in Otokutu — where every corner tells
+                a story of elegance, culture, and genuine Nigerian warmth.
               </p>
               <p>
-                Every corner of Kelmi tells a story — from the hand-selected art adorning our walls
-                to the locally-sourced ingredients on your plate. We believe that true luxury lies
-                in the details.
+                From the hand-selected art adorning our walls to the locally-sourced ingredients on
+                your plate, we believe that true luxury lies in the details. Welcome to Kelmi.
               </p>
             </div>
           </motion.div>

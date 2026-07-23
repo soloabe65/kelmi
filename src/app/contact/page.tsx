@@ -6,9 +6,9 @@ import { Section } from "@/components/ui/section"
 import { fadeUp, staggerContainer } from "@/lib/animations"
 
 const contactInfo = [
-  { icon: MapPin, label: "Address", value: "123 Serenity Valley Road, Kelmi, KA 12345" },
-  { icon: Phone, label: "Phone", value: "+1 (555) 123-4567" },
-  { icon: Mail, label: "Email", value: "reservations@kelmilodge.com" },
+  { icon: MapPin, label: "Address", value: "KM 4, DSC Expressway by Karika Filling Station, Otokutu, Ughelli South, Delta State, Nigeria" },
+  { icon: Phone, label: "Phone", value: "+234 706 954 7231" },
+  { icon: Mail, label: "Email", value: "info@kelmilodge.com" },
   { icon: Clock, label: "Front Desk", value: "Open 24 hours" },
 ]
 
@@ -82,7 +82,7 @@ export default function ContactPage() {
             </div>
             <div>
               <label htmlFor="phone" className="block text-sm font-medium text-secondary mb-1.5">Phone Number</label>
-              <input id="phone" type="tel" className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm transition-colors" placeholder="+1 (555) 000-0000" />
+              <input id="phone" type="tel" className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm transition-colors" placeholder="+234 700 000 0000" />
             </div>
             <div>
               <label htmlFor="subject" className="block text-sm font-medium text-secondary mb-1.5">Subject</label>
