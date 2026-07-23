@@ -61,7 +61,7 @@ const venues = [
 export default function EventsPage() {
   return (
     <>
-      <section className="relative pt-32 pb-20 bg-secondary overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-neutral-900 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--color-primary/8)_0%,_transparent_70%)]" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
           <motion.p
@@ -120,7 +120,7 @@ export default function EventsPage() {
         </motion.div>
       </Section>
 
-      <Section dark>
+      <Section>
         <SectionHeader
           title="Our Venues"
           subtitle="Beautifully appointed spaces for every occasion."
@@ -136,18 +136,18 @@ export default function EventsPage() {
             <motion.div
               key={venue.name}
               variants={staggerItem}
-              className="rounded-2xl overflow-hidden bg-white/5 border border-white/10"
+              className="rounded-2xl overflow-hidden bg-neutral-50 border border-neutral-200"
             >
               <div
                 className="h-56 bg-cover bg-center"
                 style={{ backgroundImage: `url(${venue.image})` }}
               />
               <div className="p-6">
-                <h3 className="font-serif text-xl text-white mb-2">{venue.name}</h3>
+                <h3 className="font-serif text-xl text-secondary mb-2">{venue.name}</h3>
                 <p className="text-sm text-primary mb-3">{venue.capacity}</p>
                 <ul className="space-y-1.5">
                   {venue.features.map((f) => (
-                    <li key={f} className="text-sm text-neutral-400 flex items-center gap-2">
+                    <li key={f} className="text-sm text-neutral-500 flex items-center gap-2">
                       <span className="w-1 h-1 rounded-full bg-primary" />
                       {f}
                     </li>

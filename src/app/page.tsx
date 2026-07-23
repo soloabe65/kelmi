@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
-import { ArrowRight, Star, MapPin, Phone, Wifi, Dumbbell, Waves, Utensils } from "lucide-react"
+import { ArrowRight, Star, MapPin, Phone } from "lucide-react"
 import { fadeUp, staggerContainer, staggerItem } from "@/lib/animations"
 import { Section, SectionHeader } from "@/components/ui/section"
 
@@ -36,27 +36,46 @@ const suites = [
 ]
 
 const amenities = [
-  { icon: Waves, label: "Infinity Pool", desc: "Heated outdoor pool with panoramic views" },
-  { icon: Dumbbell, label: "Fitness Center", desc: "State-of-the-art equipment & personal training" },
-  { icon: Wifi, label: "High-Speed WiFi", desc: "Complimentary premium connectivity" },
-  { icon: Utensils, label: "Fine Dining", desc: "Award-winning restaurant & bar" },
+  {
+    label: "Infinity Pool",
+    desc: "Heated outdoor pool with panoramic views",
+    image: "https://images.unsplash.com/photo-1576013551627-0cc20b1c5e4e?w=600&q=80",
+  },
+  {
+    label: "Fitness Center",
+    desc: "State-of-the-art equipment & personal training",
+    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80",
+  },
+  {
+    label: "Premium WiFi",
+    desc: "Complimentary high-speed connectivity",
+    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=80",
+  },
+  {
+    label: "Fine Dining",
+    desc: "Award-winning restaurant & bar",
+    image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80",
+  },
 ]
 
 const testimonials = [
   {
-    name: "Sarah & Michael",
-    role: "Wedding, June 2026",
-    text: "Our wedding at Kelmi was absolutely magical. The team went above and beyond every expectation.",
+    name: "Chinwe Obi",
+    role: "Wedding, Port Harcourt",
+    text: "Our wedding at Kelmi was absolutely magical. The team went above and beyond every expectation. The venue was breathtaking!",
+    image: "https://images.unsplash.com/photo-1589156280159-27698b41f60e?w=150&q=80",
   },
   {
-    name: "David Chen",
-    role: "Business Traveler",
-    text: "The perfect blend of luxury and comfort. The event center hosted our conference flawlessly.",
+    name: "Emeka Okafor",
+    role: "Business Traveler, Warri",
+    text: "The perfect blend of luxury and comfort. The event center hosted our conference flawlessly. I recommend Kelmi to everyone.",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80",
   },
   {
-    name: "Emma Richardson",
-    role: "Spa Weekend Guest",
-    text: "I came for a weekend and never wanted to leave. The spa treatments were world-class.",
+    name: "Blessing Adeyemi",
+    role: "Spa Weekend, Ughelli",
+    text: "I came for a weekend and never wanted to leave. The spa treatments were world-class and the staff treated me like royalty.",
+    image: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=150&q=80",
   },
 ]
 
@@ -77,7 +96,7 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden bg-secondary">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden bg-neutral-900">
         <AnimatePresence mode="wait">
           <motion.div
             key={heroIndex}
@@ -89,9 +108,8 @@ export default function Home() {
             style={{ backgroundImage: `url(${heroImages[heroIndex]})` }}
           />
         </AnimatePresence>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-secondary/90" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--color-primary)_0%,_transparent_70%)] opacity-10" />
-        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto pt-24">
           <motion.div
             variants={staggerContainer}
             initial="hidden"
@@ -113,7 +131,7 @@ export default function Home() {
             </motion.h1>
             <motion.p
               variants={fadeUp}
-              className="text-lg md:text-xl text-neutral-200/80 max-w-2xl mx-auto leading-relaxed"
+              className="text-lg md:text-xl text-neutral-300 max-w-2xl mx-auto leading-relaxed"
             >
               Where timeless elegance meets unparalleled hospitality. Experience
               premium accommodation, world-class events, and unforgettable moments.
@@ -126,7 +144,7 @@ export default function Home() {
                 Explore Suites <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                href="/contact"
+                href="/book"
                 className="inline-flex items-center gap-2 border border-white/30 text-white px-8 py-4 rounded-full font-medium hover:bg-white/10 transition-colors"
               >
                 Book Now
@@ -152,11 +170,11 @@ export default function Home() {
       </section>
 
       {/* Features Strip */}
-      <section className="bg-secondary border-t border-white/5">
+      <section className="bg-white border-t border-neutral-100">
         <div className="max-w-6xl mx-auto px-6 py-10 grid grid-cols-1 sm:grid-cols-3 gap-8">
           {[
             { icon: Star, label: "Premium Suites", desc: "Luxury accommodations" },
-            { icon: MapPin, label: "Prime Location", desc: "Scenic surroundings" },
+            { icon: MapPin, label: "Prime Location", desc: "Ughelli South, Delta State" },
             { icon: Phone, label: "24/7 Concierge", desc: "Dedicated service" },
           ].map((item, i) => (
             <motion.div
@@ -165,12 +183,12 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="flex items-center gap-4 text-white"
+              className="flex items-center gap-4"
             >
               <item.icon className="w-6 h-6 text-primary shrink-0" />
               <div>
-                <p className="font-medium">{item.label}</p>
-                <p className="text-sm text-neutral-400">{item.desc}</p>
+                <p className="font-medium text-secondary">{item.label}</p>
+                <p className="text-sm text-neutral-500">{item.desc}</p>
               </div>
             </motion.div>
           ))}
@@ -188,27 +206,25 @@ export default function Home() {
             const isActive = index === suiteIndex
             return (
               <div key={suite.title} className="absolute inset-0 flex items-center justify-center">
-                {/* Background cards */}
                 {!isActive && (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 0.5, scale: 0.75, filter: "grayscale(0.6)" }}
+                    animate={{ opacity: 0.4, scale: 0.7, filter: "grayscale(0.6)" }}
                     exit={{ opacity: 0, scale: 0.8 }}
                     transition={{ duration: 0.6, ease: "easeInOut" }}
-                    className="absolute w-[45%] h-[70%] rounded-2xl overflow-hidden shadow-lg"
+                    className="absolute w-[40%] h-[65%] rounded-2xl overflow-hidden shadow-md"
                     style={{
-                      left: index < suiteIndex ? "2%" : "auto",
-                      right: index > suiteIndex ? "2%" : "auto",
+                      left: index < suiteIndex ? "1%" : "auto",
+                      right: index > suiteIndex ? "1%" : "auto",
                     }}
                   >
                     <div
                       className="absolute inset-0 bg-cover bg-center"
                       style={{ backgroundImage: `url(${suite.image})` }}
                     />
-                    <div className="absolute inset-0 bg-black/50" />
+                    <div className="absolute inset-0 bg-black/60" />
                   </motion.div>
                 )}
-                {/* Active card */}
                 {isActive && (
                   <motion.div
                     key={suite.title + "-active"}
@@ -216,7 +232,7 @@ export default function Home() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.85 }}
                     transition={{ duration: 0.6, ease: "easeInOut" }}
-                    className="relative z-10 w-full max-w-2xl h-[80%] rounded-2xl overflow-hidden shadow-2xl"
+                    className="relative z-10 w-full max-w-2xl h-[80%] rounded-2xl overflow-hidden shadow-xl"
                   >
                     <div
                       className="absolute inset-0 bg-cover bg-center"
@@ -242,7 +258,6 @@ export default function Home() {
             )
           })}
         </div>
-        {/* Dots */}
         <div className="flex justify-center gap-3 mt-8">
           {suites.map((_, index) => (
             <button
@@ -259,33 +274,40 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* Amenities */}
-      <Section dark className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--color-primary/5)_0%,_transparent_60%)]" />
-        <SectionHeader
-          title="World-Class Amenities"
-          subtitle="Every detail curated to elevate your experience at Kelmi Lodge."
-        />
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8"
-        >
-          {amenities.map((item) => (
-            <motion.div
-              key={item.label}
-              variants={staggerItem}
-              className="text-center p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-colors"
-            >
-              <item.icon className="w-10 h-10 text-primary mx-auto mb-4" />
-              <h3 className="font-serif text-lg text-white mb-2">{item.label}</h3>
-              <p className="text-sm text-neutral-400">{item.desc}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-      </Section>
+      {/* Amenities with Images */}
+      <section className="py-20 md:py-28 bg-neutral-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <SectionHeader
+            title="World-Class Amenities"
+            subtitle="Every detail curated to elevate your experience at Kelmi Lodge."
+          />
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
+            {amenities.map((item) => (
+              <motion.div
+                key={item.label}
+                variants={staggerItem}
+                className="group relative h-72 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow"
+              >
+                <div
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                  style={{ backgroundImage: `url(${item.image})` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <h3 className="font-serif text-lg text-white mb-1">{item.label}</h3>
+                  <p className="text-sm text-neutral-300">{item.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
 
       {/* Testimonials */}
       <Section>
@@ -304,7 +326,7 @@ export default function Home() {
             <motion.div
               key={t.name}
               variants={staggerItem}
-              className="p-8 rounded-2xl bg-neutral-50 border border-neutral-100"
+              className="p-8 rounded-2xl bg-white border border-neutral-200 shadow-sm hover:shadow-md transition-shadow"
             >
               <div className="flex gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
@@ -314,9 +336,15 @@ export default function Home() {
               <p className="text-neutral-600 leading-relaxed mb-6 italic">
                 &ldquo;{t.text}&rdquo;
               </p>
-              <div>
-                <p className="font-medium text-secondary">{t.name}</p>
-                <p className="text-sm text-neutral-400">{t.role}</p>
+              <div className="flex items-center gap-4">
+                <div
+                  className="w-12 h-12 rounded-full bg-cover bg-center shrink-0"
+                  style={{ backgroundImage: `url(${t.image})` }}
+                />
+                <div>
+                  <p className="font-medium text-secondary">{t.name}</p>
+                  <p className="text-sm text-neutral-400">{t.role}</p>
+                </div>
               </div>
             </motion.div>
           ))}
@@ -324,38 +352,38 @@ export default function Home() {
       </Section>
 
       {/* CTA */}
-      <Section dark className="text-center">
+      <section className="py-20 md:py-28 bg-neutral-50 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-2xl mx-auto"
+          className="max-w-2xl mx-auto px-6"
         >
           <span className="text-primary tracking-[0.3em] uppercase text-sm font-medium">
             Begin Your Journey
           </span>
-          <h2 className="font-serif text-3xl md:text-5xl mt-4 text-white leading-tight">
+          <h2 className="font-serif text-3xl md:text-5xl mt-4 text-secondary leading-tight">
             Ready to Experience Kelmi?
           </h2>
-          <p className="mt-4 text-neutral-300 text-lg">
+          <p className="mt-4 text-neutral-500 text-lg">
             Book your stay, plan your event, or simply reach out. We look forward to welcoming you.
           </p>
           <div className="flex flex-wrap gap-4 justify-center mt-10">
             <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 bg-primary text-secondary px-8 py-4 rounded-full font-medium hover:bg-primary-dark transition-colors"
+              href="/book"
+              className="inline-flex items-center gap-2 bg-secondary text-white px-8 py-4 rounded-full font-medium hover:bg-secondary/90 transition-colors"
             >
               Make a Reservation
             </Link>
             <Link
               href="/events"
-              className="inline-flex items-center gap-2 border border-white/30 text-white px-8 py-4 rounded-full font-medium hover:bg-white/10 transition-colors"
+              className="inline-flex items-center gap-2 border border-secondary/30 text-secondary px-8 py-4 rounded-full font-medium hover:bg-secondary/5 transition-colors"
             >
               Plan an Event
             </Link>
           </div>
         </motion.div>
-      </Section>
+      </section>
     </>
   )
 }

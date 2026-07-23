@@ -64,7 +64,7 @@ const allFeatures = [
 export default function SuitesPage() {
   return (
     <>
-      <section className="relative pt-32 pb-20 bg-secondary overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-neutral-900 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--color-primary/8)_0%,_transparent_70%)]" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
           <motion.p
@@ -128,7 +128,7 @@ export default function SuitesPage() {
         </motion.div>
       </Section>
 
-      <Section dark>
+      <Section>
         <SectionHeader
           title="All Inclusive Amenities"
           subtitle="Every stay includes access to our full range of premium amenities."
@@ -144,10 +144,10 @@ export default function SuitesPage() {
             <motion.div
               key={feature.label}
               variants={staggerItem}
-              className="flex items-center gap-4 p-5 rounded-xl bg-white/5 border border-white/10"
+              className="flex items-center gap-4 p-5 rounded-xl bg-neutral-50 border border-neutral-200"
             >
               <feature.icon className="w-5 h-5 text-primary shrink-0" />
-              <span className="text-sm text-neutral-200">{feature.label}</span>
+              <span className="text-sm text-neutral-500">{feature.label}</span>
             </motion.div>
           ))}
         </motion.div>

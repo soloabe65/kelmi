@@ -10,19 +10,11 @@ interface SectionProps {
   children: ReactNode
   className?: string
   id?: string
-  dark?: boolean
 }
 
-export function Section({ children, className, id, dark }: SectionProps) {
+export function Section({ children, className, id }: SectionProps) {
   return (
-    <section
-      id={id}
-      className={cn(
-        "py-20 md:py-28",
-        dark && "bg-secondary text-white",
-        className,
-      )}
-    >
+    <section id={id} className={cn("py-20 md:py-28", className)}>
       <div className="max-w-7xl mx-auto px-6">{children}</div>
     </section>
   )
@@ -51,11 +43,11 @@ export function SectionHeader({
       <span className="text-primary text-sm tracking-[0.3em] uppercase font-medium">
         Kelmi Lodge
       </span>
-      <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl mt-4 leading-tight">
+      <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl mt-4 leading-tight text-secondary">
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-4 text-neutral-400 text-lg leading-relaxed">{subtitle}</p>
+        <p className="mt-4 text-neutral-500 text-lg leading-relaxed">{subtitle}</p>
       )}
     </motion.div>
   )

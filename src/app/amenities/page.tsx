@@ -29,7 +29,7 @@ const amenityGroups = [
 export default function AmenitiesPage() {
   return (
     <>
-      <section className="relative pt-32 pb-20 bg-secondary overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-neutral-900 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--color-primary/8)_0%,_transparent_70%)]" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
           <motion.p
@@ -85,16 +85,16 @@ export default function AmenitiesPage() {
         </Section>
       ))}
 
-      <Section dark className="text-center">
+      <Section className="text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-serif text-3xl md:text-4xl text-white">
+          <h2 className="font-serif text-3xl md:text-4xl text-secondary">
             Experience Kelmi Lodge
           </h2>
-          <p className="text-neutral-300 mt-3 max-w-lg mx-auto">
+          <p className="text-neutral-500 mt-3 max-w-lg mx-auto">
             Every amenity is included with your stay. We believe in effortless luxury.
           </p>
         </motion.div>

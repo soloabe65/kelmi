@@ -15,7 +15,7 @@ const contactInfo = [
 export default function ContactPage() {
   return (
     <>
-      <section className="relative pt-32 pb-20 bg-secondary overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-neutral-900 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--color-primary/8)_0%,_transparent_70%)]" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
           <motion.p

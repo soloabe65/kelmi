@@ -46,7 +46,7 @@ const catering = [
 export default function DiningPage() {
   return (
     <>
-      <section className="relative pt-32 pb-20 bg-secondary overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-neutral-900 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--color-primary/8)_0%,_transparent_70%)]" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
           <motion.p
@@ -112,7 +112,7 @@ export default function DiningPage() {
         </motion.div>
       </Section>
 
-      <Section dark>
+      <Section>
         <SectionHeader
           title="Catering Services"
           subtitle="Exceptional cuisine for your events, crafted to impress."
@@ -128,10 +128,10 @@ export default function DiningPage() {
             <motion.div
               key={item}
               variants={staggerItem}
-              className="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/10"
+              className="flex items-center gap-3 p-4 rounded-xl bg-neutral-50 border border-neutral-200"
             >
               <Star className="w-4 h-4 text-primary shrink-0" />
-              <span className="text-sm text-neutral-200">{item}</span>
+              <span className="text-sm text-neutral-500">{item}</span>
             </motion.div>
           ))}
         </motion.div>

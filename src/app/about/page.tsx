@@ -26,7 +26,7 @@ const values = [
 export default function AboutPage() {
   return (
     <>
-      <section className="relative pt-32 pb-20 bg-secondary overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-neutral-900 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--color-primary/8)_0%,_transparent_70%)]" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
           <motion.p
@@ -86,7 +86,7 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section dark>
+      <Section>
         <SectionHeader
           title="Our Values"
           subtitle="The principles that guide everything we do."
@@ -105,10 +105,10 @@ export default function AboutPage() {
             <motion.div
               key={v.title}
               variants={fadeUp}
-              className="p-8 rounded-2xl bg-white/5 border border-white/10"
+              className="p-8 rounded-2xl bg-neutral-50 border border-neutral-200"
             >
-              <h3 className="font-serif text-xl text-white mb-3">{v.title}</h3>
-              <p className="text-neutral-300 text-sm leading-relaxed">{v.desc}</p>
+              <h3 className="font-serif text-xl text-secondary mb-3">{v.title}</h3>
+              <p className="text-neutral-500 text-sm leading-relaxed">{v.desc}</p>
             </motion.div>
           ))}
         </motion.div>
