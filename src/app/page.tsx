@@ -6,7 +6,6 @@ import Link from "next/link"
 import { ArrowRight, Star, MapPin, Phone, Wifi, Dumbbell, Waves, Utensils } from "lucide-react"
 import { fadeUp, staggerContainer, staggerItem } from "@/lib/animations"
 import { Section, SectionHeader } from "@/components/ui/section"
-import { Card, CardImage, CardContent } from "@/components/ui/card"
 
 const heroImages = [
   "/images/suite-presidential.jpg",
@@ -20,19 +19,19 @@ const suites = [
     title: "Presidential Suite",
     desc: "Panoramic views, private terrace,奢華 living space",
     image: "/images/suite-presidential.jpg",
-    price: "$850",
+    price: "₦850,000",
   },
   {
     title: "Executive Lodge",
     desc: "Modern elegance with forest views and premium amenities",
     image: "/images/suite-executive.jpg",
-    price: "$520",
+    price: "₦520,000",
   },
   {
     title: "Garden View Room",
     desc: "Serene garden outlook with handcrafted interiors",
     image: "/images/suite-garden.jpg",
-    price: "$320",
+    price: "₦320,000",
   },
 ]
 
@@ -62,13 +61,17 @@ const testimonials = [
 ]
 
 export default function Home() {
-  const [currentImage, setCurrentImage] = useState(0)
+  const [heroIndex, setHeroIndex] = useState(0)
+  const [suiteIndex, setSuiteIndex] = useState(0)
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % heroImages.length)
+    const hero = setInterval(() => {
+      setHeroIndex((prev) => (prev + 1) % heroImages.length)
     }, 5000)
-    return () => clearInterval(interval)
+    const suite = setInterval(() => {
+      setSuiteIndex((prev) => (prev + 1) % suites.length)
+    }, 4000)
+    return () => { clearInterval(hero); clearInterval(suite) }
   }, [])
 
   return (
@@ -77,13 +80,13 @@ export default function Home() {
       <section className="relative h-screen flex items-center justify-center overflow-hidden bg-secondary">
         <AnimatePresence mode="wait">
           <motion.div
-            key={currentImage}
+            key={heroIndex}
             initial={{ opacity: 0, scale: 1.1 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 1.2, ease: "easeInOut" }}
             className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${heroImages[currentImage]})` }}
+            style={{ backgroundImage: `url(${heroImages[heroIndex]})` }}
           />
         </AnimatePresence>
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-secondary/90" />
@@ -174,38 +177,86 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Suites */}
-      <Section id="suites">
+      {/* Featured Suites Carousel */}
+      <Section id="suites" className="overflow-hidden">
         <SectionHeader
           title="Premium Accommodations"
           subtitle="Each suite thoughtfully designed to provide the utmost comfort and elegance for an unforgettable stay."
         />
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid md:grid-cols-3 gap-8"
-        >
-          {suites.map((suite) => (
-            <Card key={suite.title}>
-              <CardImage src={suite.image} alt={suite.title} />
-              <CardContent>
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-serif text-xl text-secondary">{suite.title}</h3>
-                  <span className="text-primary font-medium">{suite.price}<span className="text-sm text-neutral-400">/night</span></span>
-                </div>
-                <p className="text-neutral-500 text-sm leading-relaxed">{suite.desc}</p>
-                <Link
-                  href="/suites"
-                  className="inline-flex items-center gap-1 mt-4 text-sm font-medium text-primary hover:text-primary-dark transition-colors"
-                >
-                  View Details <ArrowRight className="w-3 h-3" />
-                </Link>
-              </CardContent>
-            </Card>
+        <div className="relative h-[600px] max-w-6xl mx-auto">
+          {suites.map((suite, index) => {
+            const isActive = index === suiteIndex
+            return (
+              <div key={suite.title} className="absolute inset-0 flex items-center justify-center">
+                {/* Background cards */}
+                {!isActive && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 0.5, scale: 0.75, filter: "grayscale(0.6)" }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.6, ease: "easeInOut" }}
+                    className="absolute w-[45%] h-[70%] rounded-2xl overflow-hidden shadow-lg"
+                    style={{
+                      left: index < suiteIndex ? "2%" : "auto",
+                      right: index > suiteIndex ? "2%" : "auto",
+                    }}
+                  >
+                    <div
+                      className="absolute inset-0 bg-cover bg-center"
+                      style={{ backgroundImage: `url(${suite.image})` }}
+                    />
+                    <div className="absolute inset-0 bg-black/50" />
+                  </motion.div>
+                )}
+                {/* Active card */}
+                {isActive && (
+                  <motion.div
+                    key={suite.title + "-active"}
+                    initial={{ opacity: 0, scale: 0.85 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.85 }}
+                    transition={{ duration: 0.6, ease: "easeInOut" }}
+                    className="relative z-10 w-full max-w-2xl h-[80%] rounded-2xl overflow-hidden shadow-2xl"
+                  >
+                    <div
+                      className="absolute inset-0 bg-cover bg-center"
+                      style={{ backgroundImage: `url(${suite.image})` }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-8">
+                      <h3 className="font-serif text-3xl text-white">{suite.title}</h3>
+                      <p className="text-neutral-300 mt-2 text-sm max-w-md">{suite.desc}</p>
+                      <div className="flex items-center justify-between mt-4">
+                        <span className="text-primary text-xl font-semibold">{suite.price}<span className="text-sm text-neutral-400 font-normal">/night</span></span>
+                        <Link
+                          href="/suites"
+                          className="inline-flex items-center gap-2 bg-primary text-secondary px-6 py-3 rounded-full text-sm font-medium hover:bg-primary-dark transition-colors"
+                        >
+                          View Details <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </div>
+            )
+          })}
+        </div>
+        {/* Dots */}
+        <div className="flex justify-center gap-3 mt-8">
+          {suites.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setSuiteIndex(index)}
+              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                index === suiteIndex
+                  ? "bg-primary w-8"
+                  : "bg-neutral-300 hover:bg-neutral-400"
+              }`}
+              aria-label={`View ${suites[index].title}`}
+            />
           ))}
-        </motion.div>
+        </div>
       </Section>
 
       {/* Amenities */}
