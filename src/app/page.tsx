@@ -19,13 +19,13 @@ const suites = [
     title: "Presidential Suite",
     desc: "Panoramic views, private terrace,奢華 living space",
     image: "/images/suite-presidential.jpg",
-    price: "₦35,000",
+    price: "₦40,000",
   },
   {
     title: "Executive Lodge",
     desc: "Modern elegance with forest views and premium amenities",
     image: "/images/suite-executive.jpg",
-    price: "₦25,000",
+    price: "₦30,000",
   },
   {
     title: "Garden View Room",
