@@ -12,14 +12,14 @@ const rooms = [
     title: "Garden View Room",
     desc: "Serene rooms opening onto lush gardens",
     image: "/images/suite-garden.jpg",
-    price: "₦150,000",
+    price: "₦20,000",
     features: ["Garden Access", "Organic Linens", "Walk-in Closet", "Tea Station"],
   },
   {
     title: "Family Lodge",
     desc: "Spacious and welcoming for families",
     image: "/images/suite-family.jpg",
-    price: "₦180,000",
+    price: "₦25,000",
     features: ["Two Bedrooms", "Living Area", "Kitchenette", "Kids' Activities"],
   },
 ]
