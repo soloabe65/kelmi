@@ -8,19 +8,19 @@ import { cn } from "@/lib/utils"
 
 const navLinks = [
   { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
   {
     label: "Accommodation",
     href: "/suites",
     dropdown: [
-      { label: "Premium Suites", href: "/suites" },
-      { label: "Standard Rooms", href: "/suites#standard" },
+      { label: "Presidential", href: "/suites/presidential" },
+      { label: "Standard", href: "/suites/standard" },
     ],
   },
   { label: "Events", href: "/events" },
   { label: "Dining", href: "/dining" },
   { label: "Amenities", href: "/amenities" },
   { label: "Gallery", href: "/gallery" },
-  { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
   { label: "Book Now", href: "/book" },
 ]

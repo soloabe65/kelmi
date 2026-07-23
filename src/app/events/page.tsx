@@ -10,28 +10,32 @@ const eventTypes = [
   {
     icon: Heart,
     title: "Weddings",
-    desc: "Say 'I do' in breathtaking settings. Our dedicated wedding team ensures every detail is perfect.",
+    desc: "Say 'I do' in breathtaking settings.",
+    image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80",
     capacity: "Up to 300 guests",
     packages: "3 curated packages",
   },
   {
     icon: Briefcase,
     title: "Corporate Events",
-    desc: "State-of-the-art conference facilities with full AV support, breakout rooms, and catering.",
+    desc: "State-of-the-art conference facilities.",
+    image: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&q=80",
     capacity: "Up to 200 delegates",
     packages: "Day & multi-day rates",
   },
   {
     icon: PartyPopper,
     title: "Social Gatherings",
-    desc: "Birthday parties, anniversaries, and milestone celebrations in elegant private spaces.",
+    desc: "Birthday parties, anniversaries, and more.",
+    image: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&q=80",
     capacity: "Up to 150 guests",
     packages: "Custom packages available",
   },
   {
     icon: Users,
     title: "Conferences & Seminars",
-    desc: "Professional venues equipped with the latest technology for impactful presentations.",
+    desc: "Professional venues with latest technology.",
+    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80",
     capacity: "Up to 400 attendees",
     packages: "Full-day & half-day",
   },
@@ -85,7 +89,7 @@ export default function EventsPage() {
             transition={{ delay: 0.2 }}
             className="text-neutral-300 mt-4 max-w-2xl mx-auto text-lg"
           >
-            From intimate gatherings to grand celebrations, our venues create unforgettable experiences.
+            From intimate gatherings to grand celebrations.
           </motion.p>
         </div>
       </section>
@@ -106,14 +110,23 @@ export default function EventsPage() {
             <motion.div
               key={event.title}
               variants={staggerItem}
-              className="p-8 rounded-2xl bg-neutral-50 border border-neutral-100 hover:shadow-lg transition-shadow"
+              className="rounded-2xl overflow-hidden bg-white border border-neutral-200"
             >
-              <event.icon className="w-10 h-10 text-primary mb-4" />
-              <h3 className="font-serif text-2xl text-secondary mb-3">{event.title}</h3>
-              <p className="text-neutral-500 leading-relaxed mb-4">{event.desc}</p>
-              <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-neutral-400">
-                <span>Capacity: {event.capacity}</span>
-                <span>{event.packages}</span>
+              <div className="relative h-48">
+                <div
+                  className="absolute inset-0 bg-cover bg-center"
+                  style={{ backgroundImage: `url(${event.image})` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              </div>
+              <div className="p-6">
+                <event.icon className="w-8 h-8 text-primary mb-3" />
+                <h3 className="font-serif text-2xl text-secondary mb-2">{event.title}</h3>
+                <p className="text-neutral-500 leading-relaxed mb-4">{event.desc}</p>
+                <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-neutral-400">
+                  <span>Capacity: {event.capacity}</span>
+                  <span>{event.packages}</span>
+                </div>
               </div>
             </motion.div>
           ))}

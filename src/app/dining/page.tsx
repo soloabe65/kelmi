@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { ArrowRight, Clock, Star } from "lucide-react"
+import { ArrowRight, Clock, Star, UtensilsCrossed, Wine, Coffee, PartyPopper, Heart, ChefHat } from "lucide-react"
 import { Section, SectionHeader } from "@/components/ui/section"
 import { Card, CardImage, CardContent } from "@/components/ui/card"
 import { staggerContainer, staggerItem } from "@/lib/animations"
@@ -11,16 +11,16 @@ const venues = [
   {
     name: "The Golden Fork",
     type: "Fine Dining Restaurant",
-    desc: "Award-winning cuisine crafted by Chef Maria Rodriguez. Seasonal menus featuring locally-sourced ingredients and international techniques.",
-    image: "/images/dining-golden-fork.jpg",
+    desc: "Award-winning cuisine crafted by our master chefs. Seasonal menus featuring locally-sourced ingredients.",
+    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80",
     hours: "6:00 PM - 10:30 PM",
     rating: 5,
   },
   {
     name: "The Terrace Bar",
     type: "Bar & Lounge",
-    desc: "Handcrafted cocktails, premium spirits, and small plates with stunning sunset views over the valley.",
-    image: "/images/dining-terrace.jpg",
+    desc: "Handcrafted cocktails, premium spirits, and small plates with stunning sunset views.",
+    image: "https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=600&q=80",
     hours: "4:00 PM - 12:00 AM",
     rating: 4.5,
   },
@@ -28,19 +28,19 @@ const venues = [
     name: "The Veranda Cafe",
     type: "Casual Dining",
     desc: "All-day dining in a relaxed garden setting. Fresh pastries, light lunches, and artisanal coffee.",
-    image: "/images/dining-veranda.jpg",
+    image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&q=80",
     hours: "7:00 AM - 5:00 PM",
     rating: 4.5,
   },
 ]
 
-const catering = [
-  "Corporate breakfasts & luncheons",
-  "Gala dinners & receptions",
-  "Cocktail parties & canapés",
-  "Wedding banquets",
-  "Private chef experiences",
-  "Dietary accommodation (vegan, gluten-free, halal)",
+const cateringServices = [
+  { label: "Corporate Breakfasts & Luncheons", image: "https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=400&q=80", icon: Coffee },
+  { label: "Gala Dinners & Receptions", image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80", icon: UtensilsCrossed },
+  { label: "Cocktail Parties & Canapés", image: "https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=400&q=80", icon: Wine },
+  { label: "Wedding Banquets", image: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=400&q=80", icon: PartyPopper },
+  { label: "Private Chef Experiences", image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=400&q=80", icon: ChefHat },
+  { label: "Dietary Accommodation", image: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=400&q=80", icon: Heart },
 ]
 
 export default function DiningPage() {
@@ -122,18 +122,28 @@ export default function DiningPage() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="max-w-3xl mx-auto grid sm:grid-cols-2 gap-4"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {catering.map((item) => (
-            <motion.div
-              key={item}
-              variants={staggerItem}
-              className="flex items-center gap-3 p-4 rounded-xl bg-neutral-50 border border-neutral-200"
-            >
-              <Star className="w-4 h-4 text-primary shrink-0" />
-              <span className="text-sm text-neutral-500">{item}</span>
-            </motion.div>
-          ))}
+          {cateringServices.map((item) => {
+            const Icon = item.icon
+            return (
+              <motion.div
+                key={item.label}
+                variants={staggerItem}
+                className="relative rounded-2xl overflow-hidden h-48 cursor-pointer group"
+              >
+                <div
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                  style={{ backgroundImage: `url(${item.image})` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
+                  <Icon className="w-8 h-8 text-primary mb-3" />
+                  <span className="font-serif text-lg text-white">{item.label}</span>
+                </div>
+              </motion.div>
+            )
+          })}
         </motion.div>
       </Section>
 
