@@ -3,31 +3,57 @@
 import { useState, useMemo, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
-import { ArrowRight, Check, ChevronLeft, Home, Send, Copy, Calendar, Users } from "lucide-react"
+import { ArrowRight, Check, ChevronLeft, Home, Send, Copy, Calendar, Users, Sparkles, AlertTriangle } from "lucide-react"
+import { AuroraText } from "@/components/magicui/aurora-text"
+import { ShineBorder } from "@/components/magicui/shine-border"
+import { BorderBeam } from "@/components/magicui/border-beam"
+import { Toaster, toast } from "sonner"
 
 const PHONE = "2347069547231"
+const RESERVATIONS_EMAIL = "reservations@kelmilodgeandeventhall.com"
 
 const rooms = [
   {
-    id: "presidential",
-    title: "Presidential Suite",
+    id: "gold",
+    title: "Royal Executive Suite (Gold)",
     image: "/images/suite-presidential.jpg",
-    price: 850000,
-    amenities: ["Panoramic Views", "Private Terrace", "Jacuzzi", "Butler Service"],
+    price: 50000,
+    amenities: ["Private Terrace", "Butler Service", "Jacuzzi", "Panoramic Views"],
+  },
+  {
+    id: "silver",
+    title: "Royal Executive Suite (Silver)",
+    image: "/images/suite-executive.jpg",
+    price: 40000,
+    amenities: ["Forest Views", "Spacious Lounge", "Premium Minibar", "Rain Shower"],
+  },
+  {
+    id: "apartment",
+    title: "Presidential Apartment",
+    image: "/images/suite-penthouse.jpg",
+    price: 35000,
+    amenities: ["Living & Dining", "Kitchenette", "Garden Terrace", "Workstation"],
+  },
+  {
+    id: "majesty",
+    title: "Royal Majesty Room",
+    image: "/images/suite-honeymoon.jpg",
+    price: 30000,
+    amenities: ["Garden Access", "Tea Station", "Walk-in Closet", "King Bed"],
   },
   {
     id: "executive",
-    title: "Executive Lodge",
-    image: "/images/suite-executive.jpg",
-    price: 520000,
-    amenities: ["Forest Views", "Workstation", "Rain Shower", "Mini Bar"],
+    title: "Executive Room",
+    image: "/images/suite-garden.jpg",
+    price: 25000,
+    amenities: ["Work Desk", "Mini Bar", "Rain Shower", "Two Guests"],
   },
   {
-    id: "garden",
-    title: "Garden View Room",
-    image: "/images/suite-garden.jpg",
-    price: 320000,
-    amenities: ["Garden Access", "Organic Linens", "Walk-in Closet", "Tea Station"],
+    id: "classic",
+    title: "Classic Room",
+    image: "/images/suite-family.jpg",
+    price: 20000,
+    amenities: ["Garden View", "Organic Linen", "Breakfast Opt.", "Tea Station"],
   },
 ]
 
@@ -158,7 +184,36 @@ export default function BookingPage() {
     return encodeURIComponent(lines.join("\n"))
   }
 
-  const handleConfirmBooking = () => {
+  const handleConfirmBooking = async () => {
+    // Build booking payload for email API
+    const payload = {
+      fullName,
+      email,
+      phone,
+      room: room?.title,
+      price: room?.price,
+      checkIn: checkIn ? formatDate(new Date(checkIn)) : "",
+      checkOut: checkOut ? formatDate(new Date(checkOut)) : "",
+      nights,
+      guests,
+      total,
+      requests,
+    }
+    // Fire confirmation emails: to reservations + to client (non-blocking, show toast even if API fails)
+    try {
+      const res = await fetch("/api/booking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      })
+      if (res.ok) {
+        toast.success(`Confirmation email sent to ${email}`)
+      } else {
+        toast.info(`Booking sent to ${RESERVATIONS_EMAIL} — email confirmation pending`)
+      }
+    } catch {
+      toast.info(`Booking sent to ${RESERVATIONS_EMAIL} — email confirmation will follow`)
+    }
     const url = `https://wa.me/${PHONE}?text=${buildBookingMessage()}`
     window.open(url, "_blank")
     setBooked(true)
@@ -183,7 +238,9 @@ export default function BookingPage() {
   if (booked) {
     return (
       <>
-        <section className="pt-32 pb-20 bg-neutral-50 min-h-screen">
+        <Toaster richColors position="top-right" />
+        <section className="pt-32 pb-20 bg-neutral-50 min-h-screen relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(197,165,90,0.08),transparent_60%)] pointer-events-none" />
           <div className="max-w-2xl mx-auto px-6 text-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -199,11 +256,14 @@ export default function BookingPage() {
               <p className="text-neutral-600 leading-relaxed mb-2">
                 Thank you, <strong>{fullName}</strong>! Your booking request for the{" "}
                 <strong>{room?.title}</strong> has been sent to our reservations team at{" "}
-                <strong>{email}</strong>.
+                <strong className="text-secondary">{RESERVATIONS_EMAIL}</strong>.
               </p>
-              <p className="text-neutral-500 text-sm mb-8">
-                Please wait for our confirmation within 24 hours before making any payment.
-                Do not pay until your reservation is confirmed.
+              <p className="text-sm text-neutral-500 mb-3">
+                A confirmation email has been sent to <strong className="text-secondary">{email}</strong> — please check your inbox (and spam/junk folder).
+              </p>
+              <p className="text-red-600 font-extrabold text-lg md:text-xl leading-tight mb-8 animate-flicker flex items-center justify-center gap-2 bg-red-50 border border-red-200 rounded-xl px-4 py-3">
+                <AlertTriangle className="w-5 h-5 shrink-0" />
+                Please wait for our confirmation within 2 hours before making any payment. Do not pay until your reservation is confirmed!
               </p>
 
               <div className="bg-amber-50 border border-amber-200 rounded-xl p-6 mb-8 text-left">
@@ -251,17 +311,20 @@ export default function BookingPage() {
 
   return (
     <>
-      <section className="pt-32 pb-20 bg-neutral-50 min-h-screen">
-        <div className="max-w-4xl mx-auto px-6" ref={topRef}>
+      <Toaster richColors position="top-right" />
+      <section className="pt-32 pb-20 bg-neutral-50 min-h-screen relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(197,165,90,0.07),transparent_60%)] pointer-events-none" />
+        <div className="max-w-4xl mx-auto px-6 relative" ref={topRef}>
+          <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex items-center justify-center gap-2 text-primary tracking-[0.18em] uppercase text-xs font-medium mb-3"><Sparkles className="w-3 h-3" /> Direct booking • Best rate</motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="font-serif text-3xl md:text-5xl text-secondary text-center mb-4"
+            className="font-serif text-3xl md:text-5xl text-secondary text-center mb-3"
           >
-            Book Your Stay
+            Book Your <AuroraText className="font-serif font-bold">Stay</AuroraText>
           </motion.h1>
-          <p className="text-neutral-500 text-center mb-12 max-w-lg mx-auto">
-            Complete the steps below and we&apos;ll confirm your reservation within 24 hours.
+          <p className="text-neutral-500 text-center mb-10 max-w-lg mx-auto">
+            Complete the steps below — concierge confirms within 2 hours. Pay at property.
           </p>
 
           {/* Progress */}
@@ -473,6 +536,11 @@ export default function BookingPage() {
                     </div>
                   </div>
                 </div>
+
+                <p className="flex items-center justify-center gap-2 text-red-600 text-sm font-medium animate-flicker bg-red-50 border border-red-200 rounded-xl px-4 py-2.5">
+                  <AlertTriangle className="w-4 h-4 shrink-0" />
+                  Please wait for our confirmation within 2 hours before making any payment. Do not pay until your reservation is confirmed!
+                </p>
 
                 {stepError && (
                   <p className="text-red-500 text-sm text-center">{stepError}</p>

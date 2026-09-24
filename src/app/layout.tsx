@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     template: "%s | Kelmi Lodge & Event Center",
   },
   description:
-    "Experience premium lodge accommodation, world-class event spaces, dining, and amenities at Kelmi Lodge & Event Center.",
+    "Experience premium lodge accommodation, world-class event spaces, dining, and amenities at Kelmi Lodge & Event Center — kelmilodgeandeventhall.com",
   keywords: [
     "hotel",
     "lodge",
@@ -36,7 +36,13 @@ export const metadata: Metadata = {
     "premium accommodation",
     "wedding venue",
     "conference center",
+    "kelmilodgeandeventhall.com",
   ],
+  metadataBase: new URL("https://kelmilodgeandeventhall.com"),
+  openGraph: {
+    url: "https://kelmilodgeandeventhall.com",
+    siteName: "Kelmi Lodge & Event Center",
+  },
 }
 
 export default function RootLayout({

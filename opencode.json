@@ -5,6 +5,16 @@
       "type": "local",
       "command": ["cmd", "/c", "npx", "-y", "@magicuidesign/mcp@latest"],
       "timeout": 120000
+    },
+    "shadcn": {
+      "type": "local",
+      "command": ["cmd", "/c", "npx", "-y", "@jpisnice/shadcn-ui-mcp-server"],
+      "timeout": 120000
+    },
+    "heroui": {
+      "type": "local",
+      "command": ["cmd", "/c", "npx", "-y", "@heroui/mcp@latest"],
+      "timeout": 120000
     }
   }
 }
