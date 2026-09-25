@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
-import { ArrowRight, Star, MapPin, Phone, Sparkles, PartyPopper, Trophy, Wifi, UtensilsCrossed, Quote, Calendar, Users, Award, ChevronRight } from "lucide-react"
+import { ArrowRight, Star, MapPin, Phone, Sparkles, PartyPopper, Trophy, Shield, Quote, Calendar, Users, Award, ChevronRight } from "lucide-react"
 import { fadeUp, staggerContainer, staggerItem } from "@/lib/animations"
 import { Section, SectionHeader } from "@/components/ui/section"
 import { AuroraText } from "@/components/magicui/aurora-text"
@@ -102,8 +102,8 @@ const bentoAmenities = [
     className: "lg:col-start-2 lg:col-end-3 lg:row-start-2 lg:row-end-3",
   },
   {
-    Icon: Wifi,
-    name: "Concierge & Connectivity",
+    Icon: Shield,
+    name: "Concierge & Support",
     description: "24/7 concierge, airport transfer, curated experiences.",
     href: "/contact",
     cta: "Meet team",
