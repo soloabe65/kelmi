@@ -104,7 +104,7 @@ const bentoAmenities = [
   {
     Icon: Wifi,
     name: "Concierge & Connectivity",
-    description: "24/7 concierge, premium WiFi, airport transfer, curated experiences.",
+    description: "24/7 concierge, airport transfer, curated experiences.",
     href: "/contact",
     cta: "Meet team",
     background: <div className="absolute inset-0 bg-gradient-to-br from-secondary via-[#1a3536] to-black" />,
@@ -357,41 +357,64 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TESTIMONIALS — Marquee (Magic UI) + glass */}
+      {/* SATELLITE VIEW — replaces testimonials (moved to /testimonials) */}
       <Section className="overflow-hidden">
-        <SectionHeader title="What Our Guests Say" subtitle="Real stories from weddings, retreats, and business stays — the Kelmi difference." />
-        <div className="relative -mx-6 mt-2">
-          <Marquee pauseOnHover className="[--duration:36s] [--gap:1.25rem]">
-            {testimonials.map((t) => (
-              <div key={t.name} className="w-[360px] shrink-0 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex gap-1 mb-3">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-primary text-primary" />
-                  ))}
+        <SectionHeader title="Find Us From Above" subtitle="Satellite view • GRWG+887, KM 48 DSC Expressway, Otokutu — your landmark from the sky." />
+        <div className="grid lg:grid-cols-5 gap-6 items-stretch">
+          <div className="lg:col-span-3 rounded-[22px] overflow-hidden border border-neutral-200 shadow-sm bg-white">
+            <div className="relative h-[420px] w-full">
+              <iframe
+                title="Kelmi Lodge Satellite View"
+                src="https://www.google.com/maps?q=5.5460703,5.8266481&z=19&t=k&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+              <div className="absolute bottom-3 left-3 bg-white/95 backdrop-blur rounded-full px-3 py-1.5 text-xs font-medium text-secondary shadow flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" /> Satellite • 5.5460703, 5.8266481
+              </div>
+            </div>
+          </div>
+          <div className="lg:col-span-2 flex flex-col gap-4">
+            <div className="rounded-[22px] border border-neutral-200 bg-white p-6 shadow-sm">
+              <h3 className="font-serif text-xl text-secondary">Kelmi Lodge & Event Center</h3>
+              <p className="text-sm text-neutral-500 mt-2 leading-relaxed">
+                <strong className="text-secondary">GRWG+887</strong> • KM 48, DSC Expressway<br />
+                Otokutu, Delta 333117, Nigeria<br />
+                <span className="inline-flex items-center gap-2 mt-2 text-xs font-medium text-primary">Accuracy ~ • Satellite verified</span>
+              </p>
+              <div className="mt-4 grid grid-cols-2 gap-3 text-xs">
+                <div className="rounded-xl bg-neutral-50 border border-neutral-200 p-3">
+                  <p className="text-neutral-400 uppercase tracking-wide">Latitude</p>
+                  <p className="font-mono font-medium text-secondary">5.5460703</p>
                 </div>
-                <Quote className="w-5 h-5 text-primary/40 mb-2" />
-                <p className="text-[14.5px] leading-relaxed text-neutral-600">“{t.text}”</p>
-                <div className="flex items-center gap-3 mt-6">
-                  <img src={t.image} alt={t.name} className="w-10 h-10 rounded-full object-cover" />
-                  <div>
-                    <p className="text-sm font-medium text-secondary leading-none">{t.name}</p>
-                    <p className="text-xs text-neutral-400 mt-1">{t.role}</p>
-                  </div>
-                  <span className="ml-auto w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <div className="rounded-xl bg-neutral-50 border border-neutral-200 p-3">
+                  <p className="text-neutral-400 uppercase tracking-wide">Longitude</p>
+                  <p className="font-mono font-medium text-secondary">5.8266481</p>
                 </div>
               </div>
-            ))}
-          </Marquee>
-          <Marquee reverse pauseOnHover className="[--duration:38s] [--gap:1.25rem]">
-            {[...testimonials].reverse().map((t) => (
-              <div key={t.name + "-2"} className="w-[360px] shrink-0 rounded-2xl border border-neutral-200 bg-neutral-50 p-6">
-                <p className="text-sm text-neutral-600">“{t.text}”</p>
-                <p className="text-xs font-medium text-secondary mt-4">{t.name} — {t.role}</p>
+              <div className="flex flex-wrap gap-2 mt-5">
+                <a href="https://www.google.com/maps/search/?api=1&query=5.5460703,5.8266481" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-secondary text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-black transition-colors">
+                  Open in Google Maps
+                </a>
+                <a href="https://maps.google.com/?q=GRWG%2B887%20KM%2048%20DSC%20Expressway%20Otokutu" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-neutral-200 px-5 py-2.5 rounded-full text-sm font-medium hover:bg-neutral-50 transition-colors">
+                  Plus Code: GRWG+887
+                </a>
               </div>
-            ))}
-          </Marquee>
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-white to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white to-transparent" />
+            </div>
+            <div className="rounded-[22px] bg-secondary text-white p-6 relative overflow-hidden">
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(197,165,90,0.12),transparent_60%)] pointer-events-none" />
+              <p className="relative text-sm font-medium tracking-[0.14em] uppercase text-primary">Visit us</p>
+              <p className="relative font-serif text-lg leading-tight mt-2">Easy access from Warri • Sapele • Ughelli</p>
+              <p className="relative text-sm text-white/70 mt-2">KM 48 DSC Expressway — look for the Kelmi Lodge landmark. Valet & 24/7 concierge on arrival.</p>
+              <Link href="/contact" className="relative inline-flex items-center gap-2 mt-4 bg-primary text-secondary px-5 py-2.5 rounded-full text-sm font-medium hover:bg-primary-dark transition-colors">
+                Get directions <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </div>
         </div>
       </Section>
 

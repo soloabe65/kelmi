@@ -22,8 +22,8 @@ const SERVICES = [
   "Lounge & stage for private gatherings",
   "Snooker (pool) bar & recreation",
   "Laundry services",
-  "Complimentary Wi-Fi",
   "Secure parking",
+  "Airport transfer arrangements",
   "24-hour front desk and security",
 ]
 

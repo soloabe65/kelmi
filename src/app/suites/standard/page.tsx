@@ -10,7 +10,7 @@ import { staggerContainer, staggerItem } from "@/lib/animations"
 
 const rooms = [
   { title: "Royal Majesty Room", desc: "Regal comfort — garden outlook, handcrafted timber, tea ritual.", image: "/images/suite-honeymoon.jpg", price: "₦30,000", features: ["Garden Access", "Tea Station", "Walk-in Closet", "King Bed"] },
-  { title: "Executive Room", desc: "Business-ready — bright, quiet, workstation and premium WiFi.", image: "/images/suite-garden.jpg", price: "₦25,000", features: ["Work Desk", "Mini Bar", "Rain Shower", "Two Guests"] },
+  { title: "Executive Room", desc: "Business-ready — bright, quiet, workstation and premium comfort.", image: "/images/suite-garden.jpg", price: "₦25,000", features: ["Work Desk", "Mini Bar", "Rain Shower", "Two Guests"] },
   { title: "Classic Room", desc: "Essential comfort — serene, handcrafted, thoughtfully appointed.", image: "/images/suite-family.jpg", price: "₦20,000", features: ["Garden View", "Organic Linen", "Breakfast Opt.", "Tea Station"] },
 ]
 
