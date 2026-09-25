@@ -19,7 +19,7 @@ const heroImages = [
   "/images/suite-presidential.jpg",
   "/images/suite-executive.jpg",
   "/images/venue-ballroom.jpg",
-  "/images/dining-golden-fork.jpg",
+  "/images/suite-family.jpg",
 ]
 
 const suites = [
@@ -93,12 +93,12 @@ const bentoAmenities = [
     className: "lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2",
   },
   {
-    Icon: UtensilsCrossed,
-    name: "Golden Fork",
-    description: "Award-winning restaurant • farm-to-table • live fire.",
-    href: "/dining",
-    cta: "See menu",
-    background: <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url(https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80)" }} />,
+    Icon: Trophy,
+    name: "Snooker Bar Experience",
+    description: "Classic snooker (pool) bar — curated drinks, friendly matches, lounge vibe.",
+    href: "/amenities",
+    cta: "Visit bar",
+    background: <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url(https://images.unsplash.com/photo-1515620268728-658ed88b02f3?w=800&q=80)" }} />,
     className: "lg:col-start-2 lg:col-end-3 lg:row-start-2 lg:row-end-3",
   },
   {
@@ -146,7 +146,7 @@ const testimonials = [
   {
     name: "David Efeturi",
     role: "Chef's Table • Ughelli",
-    text: "Golden Fork redefined dining for me. The tasting menu, the wine pairing — truly metropolitan level in the heart of Delta.",
+    text: "The lounge & snooker bar redefined evenings for me — curated drinks, great vibe — truly metropolitan level in the heart of Delta.",
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&q=80",
   },
 ]

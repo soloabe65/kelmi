@@ -75,7 +75,7 @@ const TESTIMONIALS = [
     role: "Chef's Table, Ughelli",
     date: "2 months ago",
     rating: 5,
-    text: "Golden Fork redefined dining for me. The tasting menu, the wine pairing — truly metropolitan level in the heart of Delta.",
+    text: "The lounge & snooker bar redefined evenings for me — curated drinks, great vibe — truly metropolitan level in the heart of Delta.",
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&q=80",
     source: "Google",
     isNew: false,
@@ -85,7 +85,7 @@ const TESTIMONIALS = [
 const HERO_IMAGES = [
   "/images/suite-presidential.jpg",
   "/images/venue-ballroom.jpg",
-  "/images/dining-golden-fork.jpg",
+  "/images/suite-family.jpg",
 ]
 
 function Stars({ rating }: { rating: number }) {

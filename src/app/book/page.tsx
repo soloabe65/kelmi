@@ -32,7 +32,7 @@ const rooms = [
     title: "Presidential Apartment",
     image: "/images/suite-penthouse.jpg",
     price: 35000,
-    amenities: ["Living & Dining", "Kitchenette", "Garden Terrace", "Workstation"],
+    amenities: ["Living Area", "Kitchenette", "Garden Terrace", "Workstation"],
   },
   {
     id: "majesty",

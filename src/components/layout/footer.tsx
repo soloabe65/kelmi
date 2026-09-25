@@ -20,7 +20,6 @@ const footerLinks = {
     title: "Experience",
     links: [
       { label: "Events & Weddings", href: "/events" },
-      { label: "Dining — Golden Fork", href: "/dining" },
       { label: "Amenities", href: "/amenities" },
       { label: "Lounge & Snooker Bar", href: "/amenities" },
       { label: "Gallery", href: "/gallery" },

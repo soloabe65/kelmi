@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     template: "%s | Kelmi Lodge & Event Center",
   },
   description:
-    "Experience premium lodge accommodation, world-class event spaces, dining, and amenities at Kelmi Lodge & Event Center — kelmilodgeandeventhall.com",
+    "Experience premium lodge accommodation, world-class event spaces, lounge & snooker bar, and amenities at Kelmi Lodge & Event Center — kelmilodgeandeventhall.com",
   keywords: [
     "hotel",
     "lodge",

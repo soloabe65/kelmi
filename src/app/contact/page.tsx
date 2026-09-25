@@ -70,7 +70,7 @@ export default function ContactPage() {
                     <option>General Inquiry</option>
                     <option>Room Reservation</option>
                     <option>Event Booking</option>
-                    <option>Dining Reservation</option>
+                    <option>Lounge Booking</option>
                     <option>Group Booking</option>
                   </select>
                 </div>

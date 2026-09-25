@@ -6,17 +6,17 @@ import { X, ChevronLeft, ChevronRight, Sparkles, Expand } from "lucide-react"
 import { Section } from "@/components/ui/section"
 import { AuroraText } from "@/components/magicui/aurora-text"
 
-const categories = ["All", "Suites", "Events", "Dining", "Amenities", "Nature"]
+const categories = ["All", "Suites", "Events", "Amenities", "Nature"]
 
 const galleryItems = [
   { src: "/images/gallery-1.jpg", alt: "Presidential Suite", category: "Suites" },
   { src: "/images/gallery-2.jpg", alt: "Grand Ballroom", category: "Events" },
-  { src: "/images/gallery-3.jpg", alt: "Fine Dining", category: "Dining" },
+  { src: "/images/gallery-3.jpg", alt: "Lounge & Stage", category: "Amenities" },
   { src: "/images/gallery-4.jpg", alt: "Honeymoon Suite", category: "Suites" },
   { src: "/images/gallery-5.jpg", alt: "Front Gate", category: "Nature" },
   { src: "/images/gallery-6.jpg", alt: "Penthouse Suite", category: "Suites" },
   { src: "/images/gallery-7.jpg", alt: "Garden Pavilion", category: "Events" },
-  { src: "/images/gallery-8.jpg", alt: "Terrace Bar", category: "Dining" },
+  { src: "/images/gallery-8.jpg", alt: "Snooker Bar", category: "Amenities" },
   { src: "/images/gallery-9.jpg", alt: "Executive Lodge", category: "Suites" },
   { src: "/images/gallery-10.jpg", alt: "Property View", category: "Nature" },
   { src: "/images/gallery-11.jpg", alt: "Family Lodge", category: "Suites" },

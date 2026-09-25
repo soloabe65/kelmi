@@ -12,7 +12,7 @@ import { staggerContainer, staggerItem } from "@/lib/animations"
 const suites = [
   { title: "Royal Executive Suite (Gold)", desc: "Flagship — panoramic terrace, private living, jacuzzi, butler. Our most prestigious.", image: "/images/suite-presidential.jpg", price: "₦50,000", features: ["Panoramic Views", "Private Terrace", "Jacuzzi", "Butler Service"] },
   { title: "Royal Executive Suite (Silver)", desc: "Elevated elegance — spacious lounge, forest views, premium minibar.", image: "/images/suite-executive.jpg", price: "₦40,000", features: ["Forest Views", "Spacious Lounge", "Premium Minibar", "Rain Shower"] },
-  { title: "Presidential Apartment", desc: "Apartment-style — curated art, living & dining, kitchenette, garden terrace.", image: "/images/suite-penthouse.jpg", price: "₦35,000", features: ["Living & Dining", "Kitchenette", "Garden Terrace", "Workstation"] },
+  { title: "Presidential Apartment", desc: "Apartment-style — curated art, living area, kitchenette, garden terrace.", image: "/images/suite-penthouse.jpg", price: "₦35,000", features: ["Living Area", "Kitchenette", "Garden Terrace", "Workstation"] },
 ]
 
 export default function PresidentialPage() {

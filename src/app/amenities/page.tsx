@@ -17,7 +17,7 @@ const bentoAmenities = [
 
 const convenience = [
   { icon: Car, label: "Valet & Security", desc: "Complimentary valet + 24h security." },
-  { icon: Coffee, label: "In-Room Dining", desc: "Gourmet delivery to your suite, 24/7." },
+  { icon: Coffee, label: "In-Room Service", desc: "Refreshments delivered to your suite, 24/7." },
   { icon: Shield, label: "Concierge", desc: "Reservations, transport, bespoke requests." },
   { icon: Wifi, label: "Premium WiFi", desc: "High-speed, property-wide, complimentary." },
 ]
@@ -30,7 +30,7 @@ export default function AmenitiesPage() {
         <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
           <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="inline-flex items-center gap-2 text-primary tracking-[0.2em] uppercase text-xs font-medium border border-primary/20 bg-primary/10 px-4 py-1.5 rounded-full"><Sparkles className="w-3 h-3" /> Amenities</motion.p>
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="font-serif text-4xl md:text-6xl text-white mt-6">Everything you <AuroraText className="font-serif font-bold">need</AuroraText></motion.h1>
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-white/60 mt-4 max-w-2xl mx-auto text-lg">Every detail is designed for ease — lounge, snooker bar, dining, and effortless service.</motion.p>
+          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-white/60 mt-4 max-w-2xl mx-auto text-lg">Every detail is designed for ease — lounge, snooker bar, and effortless service.</motion.p>
         </div>
       </section>
 
