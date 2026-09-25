@@ -136,7 +136,7 @@ export default function SuitesPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-secondary/70 via-secondary/45 to-secondary/75" />
         </div>
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="relative z-10 px-4">
-          <span className="text-xs font-semibold tracking-[0.28em] uppercase text-primary mb-3 block">Kelmi Lodge & Event Center • kelmilodgeandeventhall.com</span>
+          <span className="text-xs font-semibold tracking-[0.28em] uppercase text-primary mb-3 block">Kelmi Lodge & Event Hall • kelmilodgeandeventhall.com</span>
           <h1 className="font-serif text-[clamp(2.8rem,6vw,4.4rem)] font-bold text-white leading-tight mb-4">
             Rooms & <em className="italic text-primary not-italic"><AuroraText className="font-serif font-bold">Suites</AuroraText></em>
           </h1>

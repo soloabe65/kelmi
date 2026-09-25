@@ -94,7 +94,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/40">
-          <p>© {new Date().getFullYear()} Kelmi Lodge & Event Center. Crafted with warmth in Delta State.</p>
+          <p>© {new Date().getFullYear()} Kelmi Lodge & Event Hall. Crafted with warmth in Delta State.</p>
           <div className="flex gap-6">
             <Link href="/about" className="hover:text-white transition-colors">Privacy</Link>
             <Link href="/about" className="hover:text-white transition-colors">Terms</Link>

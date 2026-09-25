@@ -217,7 +217,7 @@ export default function Home() {
               Kelmi Lodge
               <span className="block mt-1">
                 <AuroraText colors={["#C5A55A", "#E8D5B5", "#D4A574", "#B8943E"]} className="font-serif font-bold">
-                  & Event Center
+                  & Event Hall
                 </AuroraText>
               </span>
             </motion.h1>
@@ -386,7 +386,7 @@ export default function Home() {
           </div>
           <div className="lg:col-span-2 flex flex-col gap-4">
             <div className="rounded-[22px] border border-neutral-200 bg-white p-6 shadow-sm">
-              <h3 className="font-serif text-xl text-secondary">Kelmi Lodge & Event Center</h3>
+              <h3 className="font-serif text-xl text-secondary">Kelmi Lodge & Event Hall</h3>
               <p className="text-sm text-neutral-500 mt-2 leading-relaxed">
                 <strong className="text-secondary">GRWG+887</strong> • KM 48, DSC Expressway<br />
                 Otokutu, Delta 333117, Nigeria<br />

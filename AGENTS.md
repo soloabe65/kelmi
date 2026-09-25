@@ -1,4 +1,4 @@
-# Kelmi Lodge & Event Center
+# Kelmi Lodge & Event Hall
 
 ## Project Overview
 A premium hotel, lodge, and event center website built with Next.js 16, React 19, TypeScript, and Tailwind CSS v4.

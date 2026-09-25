@@ -24,15 +24,15 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: "Kelmi Lodge & Event Center | Premium Accommodation & Events",
-    template: "%s | Kelmi Lodge & Event Center",
+    default: "Kelmi Lodge & Event Hall | Premium Accommodation & Events",
+    template: "%s | Kelmi Lodge & Event Hall",
   },
   description:
-    "Experience premium lodge accommodation, world-class event spaces, lounge & snooker bar, and amenities at Kelmi Lodge & Event Center — kelmilodgeandeventhall.com",
+    "Experience premium lodge accommodation, world-class event spaces, lounge & snooker bar, and amenities at Kelmi Lodge & Event Hall — kelmilodgeandeventhall.com",
   keywords: [
     "hotel",
     "lodge",
-    "event center",
+    "event hall",
     "premium accommodation",
     "wedding venue",
     "conference center",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://kelmilodgeandeventhall.com"),
   openGraph: {
     url: "https://kelmilodgeandeventhall.com",
-    siteName: "Kelmi Lodge & Event Center",
+    siteName: "Kelmi Lodge & Event Hall",
   },
 }
 

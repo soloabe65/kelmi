@@ -58,7 +58,7 @@ export default function Navbar() {
             </span>
           </div>
           <div className="hidden sm:flex flex-col leading-none border-l border-neutral-200 pl-3">
-            <span className="text-[11px] tracking-[0.2em] uppercase font-medium text-neutral-500">Lodge & Event Center</span>
+            <span className="text-[11px] tracking-[0.2em] uppercase font-medium text-neutral-500">Lodge & Event Hall</span>
             <span className="text-[11px] text-primary flex items-center gap-1"><Sparkles className="w-3 h-3" /> Ughelli, Delta</span>
           </div>
         </Link>

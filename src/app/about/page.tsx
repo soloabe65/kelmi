@@ -55,7 +55,7 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-secondary via-[#1a3536] to-secondary" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(197,165,90,0.08)_0%,_transparent_60%)]" />
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="relative z-10 px-4">
-          <span className="font-body text-xs font-semibold tracking-[0.28em] uppercase text-primary mb-3 block">Kelmi Lodge & Event Center • Otokutu • RC 2660739</span>
+          <span className="font-body text-xs font-semibold tracking-[0.28em] uppercase text-primary mb-3 block">Kelmi Lodge & Event Hall • Otokutu • RC 2660739</span>
           <h1 className="font-serif text-[clamp(2.8rem,6vw,4.4rem)] font-bold text-white leading-tight mb-4">
             Corporate <em className="italic text-primary not-italic"><AuroraText className="font-serif font-bold">Profile</AuroraText></em>
           </h1>
@@ -81,15 +81,15 @@ export default function AboutPage() {
                     It’s my pleasure to welcome you to a place where comfort, quality service, and genuine hospitality come together to create an exceptional guest experience.
                   </p>
                   <p className="font-serif text-lg lg:text-xl text-secondary/80 leading-relaxed mb-4">
-                    At Kelmi Lodge, we’re committed to making every stay memorable — from our 6 thoughtfully priced rooms (Classic ₦20,000 to Gold ₦50,000) to our private lounge & stage and snooker bar with a dedicated team. Whether visiting for business, leisure, or a special occasion, expect warm hospitality from every department.
+                    At Kelmi Lodge, we’re committed to making every stay memorable — from our 6 thoughtfully priced rooms to our private lounge & stage and snooker bar with a dedicated team. Whether visiting for business, leisure, or a special occasion, expect warm hospitality from every department.
                   </p>
                   <p className="font-serif text-lg lg:text-xl text-secondary/80 leading-relaxed">
-                    Thank you for choosing Kelmi Lodge & Event Center, Otokutu. We look forward to welcoming you.
+                    Thank you for choosing Kelmi Lodge & Event Hall, Otokutu. We look forward to welcoming you.
                   </p>
                 </div>
                 <div className="mt-6 pt-6 border-t border-neutral-100">
                   <p className="font-serif text-xl font-bold text-secondary">Kelmi Management</p>
-                  <p className="text-sm font-medium tracking-[0.14em] uppercase text-primary mt-0.5">General Manager, Kelmi Lodge & Event Center</p>
+                  <p className="text-sm font-medium tracking-[0.14em] uppercase text-primary mt-0.5">General Manager, Kelmi Lodge & Event Hall</p>
                 </div>
               </div>
             </div>
@@ -105,7 +105,7 @@ export default function AboutPage() {
             <h2 className="font-serif text-3xl lg:text-4xl font-bold text-secondary mb-6">A Modern Hospitality <em className="text-primary not-italic">Destination</em></h2>
             <div className="w-12 h-0.5 bg-primary mx-auto mb-6" />
             <p className="text-neutral-500 leading-relaxed text-lg mb-4">
-              Kelmi Lodge & Event Center is a modern hospitality destination strategically located at KM 4, DSC Expressway, Otokutu, Ughelli South, Delta State — offering 6 discounted room classes, conference facilities, lounge & stage, and snooker bar for business and leisure travelers.
+              Kelmi Lodge & Event Hall is a modern hospitality destination strategically located at KM 4, DSC Expressway, Otokutu, Ughelli South, Delta State — offering 6 discounted room classes, conference facilities, lounge & stage, and snooker bar for business and leisure travelers.
             </p>
             <p className="text-neutral-500 leading-relaxed text-lg">
               We combine contemporary standards with Niger Delta warmth to create memorable experiences. Whether business, family, conference, or wedding, we exceed expectations through professionalism and attention to detail — best rate direct at kelmilodgeandeventhall.com.

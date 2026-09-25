@@ -253,7 +253,7 @@ export default function BookingPage() {
                 </p>
                 <div className="space-y-1 text-sm text-amber-800">
                   <p><strong>Bank:</strong> [Bank Name]</p>
-                  <p><strong>Account Name:</strong> Kelmi Lodge & Event Center</p>
+                  <p><strong>Account Name:</strong> Kelmi Lodge & Event Hall</p>
                   <p><strong>Account Number:</strong> [Account Number]</p>
                   <p><strong>Amount Due:</strong> {formatNaira(total)}</p>
                 </div>
