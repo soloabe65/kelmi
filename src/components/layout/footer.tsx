@@ -3,33 +3,37 @@ import { MapPin, Phone, Mail, Globe, MessageCircle, Sparkles } from "lucide-reac
 import { AuroraText } from "@/components/magicui/aurora-text"
 
 const footerLinks = {
+  // Mirrors navbar: every navbar link appears here, no prices, all clickable
   stay: {
     title: "Stay",
     links: [
-      { label: "Royal Executive Suite (Gold) — ₦50k", href: "/suites/presidential" },
-      { label: "Royal Executive Suite (Silver) — ₦40k", href: "/suites/presidential" },
-      { label: "Presidential Apartment — ₦35k", href: "/suites/presidential" },
-      { label: "Royal Majesty — ₦30k", href: "/suites/standard" },
-      { label: "Executive • Classic — ₦25k/₦20k", href: "/suites/standard" },
-      { label: "View all 6 rooms", href: "/suites" },
+      { label: "All Suites & Rooms", href: "/suites" },
+      { label: "Royal Executive Suite (Gold)", href: "/suites/presidential" },
+      { label: "Royal Executive Suite (Silver)", href: "/suites/presidential" },
+      { label: "Presidential Apartment", href: "/suites/presidential" },
+      { label: "Royal Majesty Room", href: "/suites/standard" },
+      { label: "Executive Room", href: "/suites/standard" },
+      { label: "Classic Room", href: "/suites/standard" },
     ],
   },
   experiences: {
-    title: "Experiences",
+    title: "Experience",
     links: [
-      { label: "Golden Fork Restaurant", href: "/dining" },
       { label: "Events & Weddings", href: "/events" },
+      { label: "Dining — Golden Fork", href: "/dining" },
+      { label: "Amenities", href: "/amenities" },
       { label: "Lounge & Snooker Bar", href: "/amenities" },
-      { label: "Concierge", href: "/contact" },
+      { label: "Gallery", href: "/gallery" },
+      { label: "Testimonials", href: "/testimonials" },
     ],
   },
   discover: {
     title: "Discover",
     links: [
+      { label: "Home", href: "/" },
       { label: "About Kelmi", href: "/about" },
-      { label: "Gallery", href: "/gallery" },
-      { label: "Journal", href: "/about" },
-      { label: "Careers", href: "/contact" },
+      { label: "Contact", href: "/contact" },
+      { label: "Book Now", href: "/book" },
     ],
   },
 }

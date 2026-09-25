@@ -23,7 +23,9 @@ const navLinks = [
   },
   { label: "Events", href: "/events" },
   { label: "Dining", href: "/dining" },
+  { label: "Amenities", href: "/amenities" },
   { label: "Gallery", href: "/gallery" },
+  { label: "Testimonials", href: "/testimonials" },
   { label: "Contact", href: "/contact" },
 ]
 
