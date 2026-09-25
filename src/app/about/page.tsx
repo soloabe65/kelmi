@@ -55,7 +55,7 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-secondary via-[#1a3536] to-secondary" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(197,165,90,0.08)_0%,_transparent_60%)]" />
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="relative z-10 px-4">
-          <span className="font-body text-xs font-semibold tracking-[0.28em] uppercase text-primary mb-3 block">Kelmi Lodge & Event Hall • Otokutu • RC 2660739</span>
+          <span className="font-body text-xs font-semibold tracking-[0.28em] uppercase text-primary mb-3 block">Kelmi Lodge & Event Hall • Otokutu</span>
           <h1 className="font-serif text-[clamp(2.8rem,6vw,4.4rem)] font-bold text-white leading-tight mb-4">
             Corporate <em className="italic text-primary not-italic"><AuroraText className="font-serif font-bold">Profile</AuroraText></em>
           </h1>
