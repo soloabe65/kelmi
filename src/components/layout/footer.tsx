@@ -57,7 +57,7 @@ export default function Footer() {
             </p>
             <div className="mt-6 space-y-2 text-sm text-white/70">
               <p className="flex items-center gap-2"><MapPin className="w-4 h-4 text-primary" /> Oloje Street, Ughelli South, Delta State</p>
-              <p className="flex items-center gap-2"><Phone className="w-4 h-4 text-primary" /> +234 800 KELMI LODGE</p>
+              <p className="flex items-center gap-2"><Phone className="w-4 h-4 text-primary" /> +234 901 497 1739</p>
               <p className="flex items-center gap-2"><Mail className="w-4 h-4 text-primary" /> info@kelmilodgeandeventhall.com</p>
             </div>
             <div className="mt-6 flex gap-3">

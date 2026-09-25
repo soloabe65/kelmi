@@ -9,7 +9,7 @@ import { ShineBorder } from "@/components/magicui/shine-border"
 import { BorderBeam } from "@/components/magicui/border-beam"
 import { Toaster, toast } from "sonner"
 
-const PHONE = "2347069547231"
+const PHONE = "2349014971739"
 const RESERVATIONS_EMAIL = "reservations@kelmilodgeandeventhall.com"
 
 const rooms = [

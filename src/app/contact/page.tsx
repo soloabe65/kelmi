@@ -10,7 +10,7 @@ import { toast, Toaster } from "sonner"
 
 const contactInfo = [
   { icon: MapPin, label: "Address", value: "KM 4, DSC Expressway by Karika Filling Station, Otokutu, Ughelli South, Delta State" },
-  { icon: Phone, label: "Phone / WhatsApp", value: "+234 706 954 7231" },
+  { icon: Phone, label: "Phone / WhatsApp", value: "+234 901 497 1739" },
   { icon: Mail, label: "Email", value: "info@kelmilodgeandeventhall.com" },
   { icon: Clock, label: "Front Desk", value: "Open 24 hours • Best reply within 2h" },
 ]
@@ -79,7 +79,7 @@ export default function ContactPage() {
                   <textarea rows={5} required placeholder="Tell us how we can help..." className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm resize-none" />
                 </div>
                 <button type="submit" className="w-full inline-flex items-center justify-center gap-2 bg-secondary text-white py-4 rounded-full font-medium hover:bg-black transition-colors"><Send className="w-4 h-4" /> Send message</button>
-                <p className="text-xs text-center text-neutral-400">Prefer WhatsApp? <a href="https://wa.me/2347069547231" target="_blank" className="text-primary underline">Chat now</a></p>
+                <p className="text-xs text-center text-neutral-400">Prefer WhatsApp? <a href="https://wa.me/2349014971739" target="_blank" className="text-primary underline">Chat now</a></p>
               </div>
             </ShineBorder>
           </motion.form>

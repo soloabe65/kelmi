@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 
-const PHONE = "2347069547231"
+const PHONE = "2349014971739"
 const WA_URL = `https://wa.me/${PHONE}`
 
 export default function WhatsAppButton() {

@@ -102,12 +102,18 @@ const bentoAmenities = [
     className: "lg:col-start-2 lg:col-end-3 lg:row-start-2 lg:row-end-3",
   },
   {
-    Icon: Shield,
-    name: "Concierge & Support",
-    description: "24/7 concierge, airport transfer, curated experiences.",
+    Icon: Phone,
+    name: "24/7 Concierge & Support",
+    description: "Round-the-clock care — reservations, airport pickup & tailored help. Call +234 901 497 1739 or chat on WhatsApp.",
     href: "/contact",
-    cta: "Meet team",
-    background: <div className="absolute inset-0 bg-gradient-to-br from-secondary via-[#1a3536] to-black" />,
+    cta: "Contact us → +234 901 497 1739",
+    background: (
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url(https://images.unsplash.com/photo-1521791136064-7986c86c94a1?w=800&q=80)" }} />
+        <div className="absolute inset-0 bg-gradient-to-br from-secondary/90 via-secondary/70 to-black/60" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,_rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,_rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:28px_28px] opacity-30" />
+      </div>
+    ),
     className: "lg:col-start-3 lg:col-end-3 lg:row-start-1 lg:row-end-3",
   },
 ]
