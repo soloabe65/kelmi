@@ -8,18 +8,21 @@ import { AuroraText } from "@/components/magicui/aurora-text"
 import { BorderBeam } from "@/components/magicui/border-beam"
 import { ShineBorder } from "@/components/magicui/shine-border"
 import { staggerContainer, staggerItem } from "@/lib/animations"
+import { IMAGES } from "@/lib/images"
 
 const eventTypes = [
-  { icon: Heart, title: "Weddings", desc: "Say 'I do' in breathtaking delta light.", image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80", capacity: "Up to 300 guests", packages: "3 packages", color: "from-rose-500/10 to-primary/10" },
-  { icon: Briefcase, title: "Corporate", desc: "Conferences with flawless AV & service.", image: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&q=80", capacity: "Up to 200 delegates", packages: "Day & multi-day", color: "from-blue-500/10 to-primary/10" },
-  { icon: PartyPopper, title: "Social", desc: "Birthdays, anniversaries, garden parties.", image: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&q=80", capacity: "Up to 150 guests", packages: "Custom", color: "from-amber-500/10 to-primary/10" },
-  { icon: Users, title: "Conferences", desc: "Professional venues, latest tech.", image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80", capacity: "Up to 400 attendees", packages: "Half & full day", color: "from-emerald-500/10 to-primary/10" },
+  { icon: Heart, title: "Weddings", desc: "Say 'I do' in breathtaking delta light.", image: IMAGES.eventHall.photos[0], capacity: "Up to 300 guests", packages: "3 packages", color: "from-rose-500/10 to-primary/10" },
+  { icon: Users, title: "Conferences", desc: "Professional venues, latest tech.", image: IMAGES.eventHall.photos[1], capacity: "Up to 400 attendees", packages: "Half & full day", color: "from-emerald-500/10 to-primary/10" },
+  { icon: PartyPopper, title: "Social", desc: "Birthdays, anniversaries, garden parties.", image: IMAGES.lounge.lead, capacity: "Up to 150 guests", packages: "Custom", color: "from-amber-500/10 to-primary/10" },
+  { icon: Briefcase, title: "Corporate", desc: "Conferences with flawless AV & service.", image: IMAGES.eventHall.photos[2], capacity: "Up to 200 delegates", packages: "Day & multi-day", color: "from-blue-500/10 to-primary/10" },
 ]
 
+// Only the Grand Ballroom has photography so far. The other two render a
+// neutral panel rather than borrowing an unrelated photo.
 const venues = [
-  { name: "The Grand Ballroom", capacity: "400 seated / 600 cocktail", features: ["Crystal chandeliers", "Stage & dance floor", "Immersive sound"], image: "/images/venue-ballroom.jpg" },
-  { name: "Garden Pavilion", capacity: "200 seated / 300 cocktail", features: ["Open-air terrace", "Garden views", "Twilight lighting"], image: "/images/venue-pavilion.jpg" },
-  { name: "Boardroom", capacity: "20 seated", features: ["Video conferencing", "Whiteboard walls", "Private catering"], image: "/images/venue-boardroom.jpg" },
+  { name: "The Grand Ballroom", capacity: "400 seated / 600 cocktail", features: ["Crystal chandeliers", "Stage & dance floor", "Immersive sound"], image: IMAGES.eventHall.lead },
+  { name: "Garden Pavilion", capacity: "200 seated / 300 cocktail", features: ["Open-air terrace", "Garden views", "Twilight lighting"], image: null },
+  { name: "Boardroom", capacity: "20 seated", features: ["Video conferencing", "Whiteboard walls", "Private catering"], image: null },
 ]
 
 export default function EventsPage() {
@@ -68,7 +71,13 @@ export default function EventsPage() {
         <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} className="grid md:grid-cols-3 gap-6">
           {venues.map((v) => (
             <motion.div key={v.name} variants={staggerItem} className="rounded-2xl overflow-hidden bg-white border border-neutral-200 shadow-sm hover:shadow-md transition-shadow">
-              <div className="h-56 bg-cover bg-center" style={{ backgroundImage: `url(${v.image})` }} />
+              {v.image ? (
+                <div className="h-56 bg-cover bg-center" style={{ backgroundImage: `url(${v.image})` }} />
+              ) : (
+                <div className="h-56 bg-gradient-to-br from-secondary via-secondary to-neutral-900 flex items-center justify-center">
+                  <p className="text-xs font-medium tracking-[0.2em] uppercase text-primary/70">Photography in progress</p>
+                </div>
+              )}
               <div className="p-6">
                 <h3 className="font-serif text-lg text-secondary flex items-center gap-2"><MapPin className="w-4 h-4 text-primary" />{v.name}</h3>
                 <p className="text-xs text-primary font-medium mt-1">{v.capacity}</p>

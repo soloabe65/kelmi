@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, ChevronDown, Sparkles } from "lucide-react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
+import { IMAGES } from "@/lib/images"
+import { ADDRESS } from "@/lib/site"
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -52,14 +54,18 @@ export default function Navbar() {
         <Link href="/" className="flex items-center gap-3 group">
           <div className="relative">
             <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-            <span className="relative font-serif text-[28px] tracking-wide text-secondary group-hover:text-primary transition-colors">
-              Kelmi
-              <span className="ml-[1px] inline-flex items-center justify-center w-1.5 h-1.5 rounded-full bg-primary animate-pulse ml-1 align-super" />
-            </span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={IMAGES.logo}
+              alt="Kelmi Lodge"
+              width="40"
+              height="40"
+              className="relative w-10 h-10 object-contain"
+            />
           </div>
           <div className="hidden sm:flex flex-col leading-none border-l border-neutral-200 pl-3">
-            <span className="text-[11px] tracking-[0.2em] uppercase font-medium text-neutral-500">Lodge & Event Hall</span>
-            <span className="text-[11px] text-primary flex items-center gap-1"><Sparkles className="w-3 h-3" /> Ughelli, Delta</span>
+            <span className="text-[11px] tracking-[0.2em] uppercase font-medium text-neutral-500">Lodge &amp; Event Hall</span>
+            <span className="text-[11px] text-primary flex items-center gap-1"><Sparkles className="w-3 h-3" /> {ADDRESS.area}, Delta</span>
           </div>
         </Link>
 
@@ -82,7 +88,7 @@ export default function Navbar() {
                         className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[320px] bg-white/95 backdrop-blur-xl rounded-2xl border border-neutral-200 shadow-[0_16px_48px_rgba(0,0,0,0.12)] overflow-hidden p-2"
                       >
                         {link.dropdown.map((item) => (
-                          <Link key={item.href} href={item.href} className="flex flex-col px-4 py-3 rounded-xl hover:bg-neutral-50 group/item transition-colors">
+                          <Link key={item.label} href={item.href} className="flex flex-col px-4 py-3 rounded-xl hover:bg-neutral-50 group/item transition-colors">
                             <span className="text-sm font-medium text-secondary group-hover/item:text-primary">{item.label}</span>
                             <span className="text-xs text-neutral-400">{item.desc}</span>
                           </Link>

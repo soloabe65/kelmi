@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, type Variants } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { AuroraText } from "@/components/magicui/aurora-text"
+import { IMAGES } from "@/lib/images"
 
 // Beechnut Rooms pattern — rebuilt with Kelmi premium (prices untouched: 20k-50k) — kelmilodgeandeventhall.com
 const CATEGORIES = ["all", "classic", "executive", "majesty", "presidential", "royal"] as const
@@ -29,8 +30,8 @@ const ROOMS: Room[] = [
     type: "classic",
     description: "Essential comfort — serene, handcrafted, thoughtfully appointed for the budget-conscious traveller.",
     price: 20000,
-    image: "/images/suite-family.jpg",
-    images: ["/images/suite-family.jpg", "/images/gallery-5.jpg"],
+    image: IMAGES.classic.lead,
+    images: [...IMAGES.classic.photos],
     amenities: ["Air Conditioning", "En-suite Bathroom", "Work Desk", "Daily Housekeeping"],
     badge: "Classic",
     href: "/suites/standard",
@@ -41,8 +42,8 @@ const ROOMS: Room[] = [
     type: "executive",
     description: "Business-ready — quiet, bright, workstation and premium comfort, perfect for corporate stays.",
     price: 25000,
-    image: "/images/suite-garden.jpg",
-    images: ["/images/suite-garden.jpg", "/images/suite-executive.jpg"],
+    image: IMAGES.executive.lead,
+    images: [...IMAGES.executive.photos],
     amenities: ["Work Desk", "Air Conditioning", "Rain Shower", "Mini Bar", "Daily Housekeeping"],
     badge: "Business",
     href: "/suites/standard",
@@ -53,8 +54,8 @@ const ROOMS: Room[] = [
     type: "majesty",
     description: "Regal comfort — garden outlook, handcrafted timber, tea ritual and walk-in closet.",
     price: 30000,
-    image: "/images/suite-honeymoon.jpg",
-    images: ["/images/suite-honeymoon.jpg", "/images/gallery-1.jpg"],
+    image: IMAGES.majesty.lead,
+    images: [...IMAGES.majesty.photos],
     amenities: ["Garden Access", "Tea Station", "Walk-in Closet", "King Bed", "Daily Housekeeping"],
     badge: "Royal",
     href: "/suites/standard",
@@ -65,8 +66,8 @@ const ROOMS: Room[] = [
     type: "presidential",
     description: "Apartment-style living — curated art, living area, kitchenette and garden terrace.",
     price: 35000,
-    image: "/images/suite-penthouse.jpg",
-    images: ["/images/suite-penthouse.jpg", "/images/venue-pavilion.jpg"],
+    image: IMAGES.apartment.lead,
+    images: [...IMAGES.apartment.photos],
     amenities: ["Living Area", "Kitchenette", "Garden Terrace", "Workstation", "Daily Housekeeping"],
     badge: "Apartment",
     href: "/suites/presidential",
@@ -77,8 +78,8 @@ const ROOMS: Room[] = [
     type: "royal",
     description: "Elevated elegance — spacious lounge, forest views, premium minibar and rain shower.",
     price: 40000,
-    image: "/images/suite-executive.jpg",
-    images: ["/images/suite-executive.jpg", "/images/gallery-9.jpg"],
+    image: IMAGES.executive.lead,
+    images: [...IMAGES.executive.photos],
     amenities: ["Forest Views", "Premium Minibar", "Rain Shower", "Work Desk", "Lounge Access"],
     badge: "Most Popular",
     href: "/suites/presidential",
@@ -89,18 +90,18 @@ const ROOMS: Room[] = [
     type: "royal",
     description: "Flagship — panoramic terrace, private living, jacuzzi, butler service and finest amenities.",
     price: 50000,
-    image: "/images/suite-presidential.jpg",
-    images: ["/images/suite-presidential.jpg", "/images/gallery-1.jpg"],
+    image: IMAGES.gold.lead,
+    images: [...IMAGES.gold.photos],
     amenities: ["Panoramic Views", "Butler Service", "Jacuzzi & Rain Shower", "Private Terrace", "Daily Housekeeping"],
     badge: "Flagship",
     href: "/suites/presidential",
   },
 ]
 
-const heroBgVariants = {
+const heroBgVariants: Variants = {
   enter: { opacity: 0, scale: 1.08 },
-  center: { opacity: 1, scale: 1, transition: { duration: 1.2, ease: [0.25, 0.1, 0.25, 1] as any } },
-  exit: { opacity: 0, scale: 1.08, transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] as any } },
+  center: { opacity: 1, scale: 1, transition: { duration: 1.2, ease: [0.25, 0.1, 0.25, 1] } },
+  exit: { opacity: 0, scale: 1.08, transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] } },
 }
 
 export default function SuitesPage() {

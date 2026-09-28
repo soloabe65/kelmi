@@ -2,24 +2,26 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { PartyPopper, Trophy, Sparkles, Coffee, Car, Shield, TreePine, ArrowRight } from "lucide-react"
+import { PartyPopper, Trophy, Sparkles, Coffee, Car, Shield, ConciergeBell, ArrowRight } from "lucide-react"
 import { Section, SectionHeader } from "@/components/ui/section"
 import { BentoGrid, BentoCard } from "@/components/magicui/bento-grid"
 import { AuroraText } from "@/components/magicui/aurora-text"
 import { staggerContainer, staggerItem } from "@/lib/animations"
+import { IMAGES } from "@/lib/images"
+import { CONTACT } from "@/lib/site"
 
 const bentoAmenities = [
-  { Icon: PartyPopper, name: "Lounge & Stage", description: "Private lounge with stage — gatherings, live music, bespoke events.", href: "/contact", cta: "Lounge details", background: <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url(https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&q=80)" }} />, className: "lg:row-start-1 lg:row-end-3 lg:col-start-1 lg:col-end-2" },
-  { Icon: Trophy, name: "Snooker Bar", description: "Classic snooker (pool) bar — styled lounge, drinks, friendly matches.", href: "/contact", cta: "Visit snooker bar", background: <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url(https://images.unsplash.com/photo-1515620268728-658ed88b02f3?w=800&q=80)" }} />, className: "lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2" },
-  { Icon: Sparkles, name: "Spa & Wellness", description: "Massage, facials, hydrotherapy — holistic calm.", href: "/contact", cta: "View spa", background: <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url(https://images.unsplash.com/photo-1540555700478-4be289fbec6d?w=800&q=80)" }} />, className: "lg:col-start-2 lg:col-end-3 lg:row-start-2 lg:row-end-3" },
-  { Icon: TreePine, name: "Nature & Concierge", description: "Trails, valet, 24/7 concierge — all included.", href: "/contact", cta: "Meet concierge", background: <div className="absolute inset-0 bg-gradient-to-br from-secondary to-black" />, className: "lg:col-start-3 lg:col-end-3 lg:row-start-1 lg:row-end-3" },
+  { Icon: PartyPopper, name: "Lounge & Stage", description: "Private lounge with stage — gatherings, live music, bespoke events.", href: "/contact", cta: "Enquire about the lounge", background: <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${IMAGES.lounge.lead})` }} />, className: "lg:row-start-1 lg:row-end-3 lg:col-start-1 lg:col-end-2" },
+  { Icon: Trophy, name: "Snooker Bar", description: "Classic snooker bar — styled lounge, drinks, friendly matches.", href: "/contact", cta: "Enquire about the bar", background: <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${IMAGES.snookerBar.lead})` }} />, className: "lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2" },
+  { Icon: Sparkles, name: "Reception & Check-in", description: "24-hour front desk, valet parking and 24/7 security on arrival.", href: "/contact", cta: "Plan your arrival", background: <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${IMAGES.frontDesk.lead})` }} />, className: "lg:col-start-2 lg:col-end-3 lg:row-start-2 lg:row-end-3" },
+  { Icon: ConciergeBell, name: "Concierge & Support", description: `Round-the-clock care — reservations, airport pickup & tailored help. Call ${CONTACT.phoneDisplay}.`, href: "/contact", cta: `Call ${CONTACT.phoneDisplay}`, background: <div className="absolute inset-0 bg-gradient-to-br from-secondary to-black" />, className: "lg:col-start-3 lg:col-end-3 lg:row-start-1 lg:row-end-3" },
 ]
 
 const convenience = [
   { icon: Car, label: "Valet & Security", desc: "Complimentary valet + 24h security." },
   { icon: Coffee, label: "In-Room Service", desc: "Refreshments delivered to your suite, 24/7." },
   { icon: Shield, label: "Concierge", desc: "Reservations, transport, bespoke requests." },
-  { icon: TreePine, label: "Laundry Service", desc: "Express laundry and pressing available." },
+  { icon: Sparkles, label: "Laundry Service", desc: "Express laundry and pressing available." },
 ]
 
 export default function AmenitiesPage() {

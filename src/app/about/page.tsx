@@ -2,7 +2,9 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Award, Users, Leaf, Crown, Sparkles, ArrowRight, Heart, Shield, Check } from "lucide-react"
+import { Award, Crown, ArrowRight, Check } from "lucide-react"
+import { IMAGES } from "@/lib/images"
+import { ADDRESS } from "@/lib/site"
 import { AuroraText } from "@/components/magicui/aurora-text"
 import { ShineBorder } from "@/components/magicui/shine-border"
 import { BorderBeam } from "@/components/magicui/border-beam"
@@ -55,7 +57,7 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-secondary via-[#1a3536] to-secondary" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(197,165,90,0.08)_0%,_transparent_60%)]" />
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="relative z-10 px-4">
-          <span className="font-body text-xs font-semibold tracking-[0.28em] uppercase text-primary mb-3 block">Kelmi Lodge & Event Hall • Otokutu</span>
+          <span className="font-sans text-xs font-semibold tracking-[0.28em] uppercase text-primary mb-3 block">Kelmi Lodge &amp; Event Hall • Otokutu</span>
           <h1 className="font-serif text-[clamp(2.8rem,6vw,4.4rem)] font-bold text-white leading-tight mb-4">
             Corporate <em className="italic text-primary not-italic"><AuroraText className="font-serif font-bold">Profile</AuroraText></em>
           </h1>
@@ -69,7 +71,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-10 lg:gap-14 items-center">
               <div className="w-64 h-64 sm:w-72 sm:h-72 rounded-full overflow-hidden ring-4 ring-primary/30 shadow-lg mx-auto lg:mx-0 relative">
                 <BorderBeam size={240} duration={12} colorFrom="#C5A55A" colorTo="#E8D5B5" />
-                <img src="/images/gallery-5.jpg" alt="Kelmi Lodge — General Manager welcome" width="288" height="288" loading="lazy" className="w-full h-full object-cover" />
+                <img src={IMAGES.frontDesk.lead} alt="Kelmi Lodge reception" width="288" height="288" loading="lazy" className="w-full h-full object-cover" />
               </div>
               <div>
                 <span className="text-xs font-semibold tracking-[0.2em] uppercase text-primary block mb-2">A Welcome Message</span>
@@ -105,7 +107,7 @@ export default function AboutPage() {
             <h2 className="font-serif text-3xl lg:text-4xl font-bold text-secondary mb-6">A Modern Hospitality <em className="text-primary not-italic">Destination</em></h2>
             <div className="w-12 h-0.5 bg-primary mx-auto mb-6" />
             <p className="text-neutral-500 leading-relaxed text-lg mb-4">
-              Kelmi Lodge & Event Hall is a modern hospitality destination strategically located at KM 4, DSC Expressway, Otokutu, Ughelli South, Delta State — offering 6 discounted room classes, conference facilities, lounge & stage, and snooker bar for business and leisure travelers.
+              Kelmi Lodge &amp; Event Hall is a modern hospitality destination strategically located at {ADDRESS.oneLine} — offering 6 discounted room classes, conference facilities, lounge &amp; stage, and snooker bar for business and leisure travelers.
             </p>
             <p className="text-neutral-500 leading-relaxed text-lg">
               We combine contemporary standards with Niger Delta warmth to create memorable experiences. Whether business, family, conference, or wedding, we exceed expectations through professionalism and attention to detail — best rate direct at kelmilodgeandeventhall.com.

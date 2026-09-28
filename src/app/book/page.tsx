@@ -5,53 +5,52 @@ import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import { ArrowRight, Check, ChevronLeft, Home, Send, Copy, Calendar, Users, Sparkles, AlertTriangle } from "lucide-react"
 import { AuroraText } from "@/components/magicui/aurora-text"
-import { ShineBorder } from "@/components/magicui/shine-border"
-import { BorderBeam } from "@/components/magicui/border-beam"
-import { Toaster, toast } from "sonner"
+import { Toaster } from "sonner"
+import { IMAGES } from "@/lib/images"
+import { CONTACT, RESPONSE_TIME } from "@/lib/site"
 
-const PHONE = "2349014971739"
-const RESERVATIONS_EMAIL = "reservations@kelmilodgeandeventhall.com"
+const RESERVATIONS_EMAIL = CONTACT.reservationsEmail
 
 const rooms = [
   {
     id: "gold",
     title: "Royal Executive Suite (Gold)",
-    image: "/images/suite-presidential.jpg",
+    image: IMAGES.gold.lead,
     price: 50000,
     amenities: ["Private Terrace", "Butler Service", "Jacuzzi", "Panoramic Views"],
   },
   {
     id: "silver",
     title: "Royal Executive Suite (Silver)",
-    image: "/images/suite-executive.jpg",
+    image: IMAGES.executive.lead,
     price: 40000,
     amenities: ["Forest Views", "Spacious Lounge", "Premium Minibar", "Rain Shower"],
   },
   {
     id: "apartment",
     title: "Presidential Apartment",
-    image: "/images/suite-penthouse.jpg",
+    image: IMAGES.apartment.lead,
     price: 35000,
     amenities: ["Living Area", "Kitchenette", "Garden Terrace", "Workstation"],
   },
   {
     id: "majesty",
     title: "Royal Majesty Room",
-    image: "/images/suite-honeymoon.jpg",
+    image: IMAGES.majesty.lead,
     price: 30000,
     amenities: ["Garden Access", "Tea Station", "Walk-in Closet", "King Bed"],
   },
   {
     id: "executive",
     title: "Executive Room",
-    image: "/images/suite-garden.jpg",
+    image: IMAGES.executive.photos[1],
     price: 25000,
     amenities: ["Work Desk", "Mini Bar", "Rain Shower", "Two Guests"],
   },
   {
     id: "classic",
     title: "Classic Room",
-    image: "/images/suite-family.jpg",
+    image: IMAGES.classic.lead,
     price: 20000,
     amenities: ["Garden View", "Organic Linen", "Breakfast Opt.", "Tea Station"],
   },
@@ -184,28 +183,22 @@ export default function BookingPage() {
     return encodeURIComponent(lines.join("\n"))
   }
 
-  const handleConfirmBooking = async () => {
-    // Static export — no server API, use client-side + WhatsApp
-    // Simulate email queue: client + reservations (replace with EmailJS/Resend client SDK when ready)
-    try {
-      // Client-side email preview (no fetch to /api/booking for static export)
-      console.log("[BOOKING] Client confirmation →", email, "| Reservations →", RESERVATIONS_EMAIL)
-      toast.success(`Confirmation queued for ${email} + ${RESERVATIONS_EMAIL}`)
-    } catch {
-      toast.info(`Booking sent to ${RESERVATIONS_EMAIL}`)
-    }
-    const url = `https://wa.me/${PHONE}?text=${buildBookingMessage()}`
+  const handleConfirmBooking = () => {
+    // Static export: no server, so no email is sent from here. The booking
+    // reaches the team through the WhatsApp deep link below, which is the
+    // only channel that actually delivers. Copy must not claim otherwise.
+    const url = `${CONTACT.whatsappUrl}?text=${encodeURIComponent(buildBookingMessage())}`
     window.open(url, "_blank")
     setBooked(true)
   }
 
   const handleResendBooking = () => {
-    const url = `https://wa.me/${PHONE}?text=${buildBookingMessage()}`
+    const url = `${CONTACT.whatsappUrl}?text=${encodeURIComponent(buildBookingMessage())}`
     window.open(url, "_blank")
   }
 
   const handleSendReceipt = () => {
-    const url = `https://wa.me/${PHONE}?text=${buildReceiptMessage()}`
+    const url = `${CONTACT.whatsappUrl}?text=${encodeURIComponent(buildReceiptMessage())}`
     window.open(url, "_blank")
   }
 
@@ -235,27 +228,27 @@ export default function BookingPage() {
               </h2>
               <p className="text-neutral-600 leading-relaxed mb-2">
                 Thank you, <strong>{fullName}</strong>! Your booking request for the{" "}
-                <strong>{room?.title}</strong> has been sent to our reservations team at{" "}
-                <strong className="text-secondary">{RESERVATIONS_EMAIL}</strong>.
+                <strong>{room?.title}</strong> is ready to send to our reservations team.
               </p>
               <p className="text-sm text-neutral-500 mb-3">
-                A confirmation email has been sent to <strong className="text-secondary">{email}</strong> — please check your inbox (and spam/junk folder).
+                <strong className="text-secondary">Finish in WhatsApp.</strong> We have opened a chat with your full booking details — tap send and our team will confirm within {RESPONSE_TIME}. A WhatsApp window may have opened in a new tab.
+              </p>
+              <p className="text-xs text-neutral-400 mb-3">
+                Prefer email? Write to <a href={`mailto:${RESERVATIONS_EMAIL}`} className="text-primary underline">{RESERVATIONS_EMAIL}</a> with the same details.
               </p>
               <p className="text-red-600 font-extrabold text-lg md:text-xl leading-tight mb-8 animate-flicker flex items-center justify-center gap-2 bg-red-50 border border-red-200 rounded-xl px-4 py-3">
                 <AlertTriangle className="w-5 h-5 shrink-0" />
-                Please wait for our confirmation within 2 hours before making any payment. Do not pay until your reservation is confirmed!
+                Please wait for our confirmation within {RESPONSE_TIME} before making any payment. Do not pay until your reservation is confirmed!
               </p>
 
               <div className="bg-amber-50 border border-amber-200 rounded-xl p-6 mb-8 text-left">
                 <h3 className="font-medium text-amber-800 mb-3">Payment Details</h3>
                 <p className="text-sm text-amber-700 mb-2">
-                  <em>Placeholder — update with real bank details</em>
+                  Our reservations team will send you verified bank transfer details along with your confirmation. Please do not pay to any account until you have spoken to us.
                 </p>
                 <div className="space-y-1 text-sm text-amber-800">
-                  <p><strong>Bank:</strong> [Bank Name]</p>
-                  <p><strong>Account Name:</strong> Kelmi Lodge & Event Hall</p>
-                  <p><strong>Account Number:</strong> [Account Number]</p>
-                  <p><strong>Amount Due:</strong> {formatNaira(total)}</p>
+                  <p><strong>Amount due:</strong> {formatNaira(total)}</p>
+                  <p><strong>Pay to:</strong> provided on confirmation</p>
                 </div>
               </div>
 
@@ -304,7 +297,7 @@ export default function BookingPage() {
             Book Your <AuroraText className="font-serif font-bold">Stay</AuroraText>
           </motion.h1>
           <p className="text-neutral-500 text-center mb-10 max-w-lg mx-auto">
-            Complete the steps below — concierge confirms within 2 hours. Pay at property.
+            Complete the steps below — concierge confirms within {RESPONSE_TIME}. Pay at property.
           </p>
 
           {/* Progress */}
@@ -519,7 +512,7 @@ export default function BookingPage() {
 
                 <p className="flex items-center justify-center gap-2 text-red-600 text-sm font-medium animate-flicker bg-red-50 border border-red-200 rounded-xl px-4 py-2.5">
                   <AlertTriangle className="w-4 h-4 shrink-0" />
-                  Please wait for our confirmation within 2 hours before making any payment. Do not pay until your reservation is confirmed!
+                  Please wait for our confirmation within {RESPONSE_TIME} before making any payment. Do not pay until your reservation is confirmed!
                 </p>
 
                 {stepError && (

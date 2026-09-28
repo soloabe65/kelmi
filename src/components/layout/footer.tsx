@@ -1,6 +1,8 @@
 import Link from "next/link"
-import { MapPin, Phone, Mail, Globe, MessageCircle, Sparkles } from "lucide-react"
+import { MapPin, Phone, Mail, Globe, MessageCircle } from "lucide-react"
 import { AuroraText } from "@/components/magicui/aurora-text"
+import { IMAGES } from "@/lib/images"
+import { ADDRESS, CONTACT } from "@/lib/site"
 
 const footerLinks = {
   // Mirrors navbar: every navbar link appears here, no prices, all clickable
@@ -48,22 +50,24 @@ export default function Footer() {
       <div className="relative max-w-7xl mx-auto px-6 pt-16 pb-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           <div className="lg:col-span-2">
-            <Link href="/" className="inline-flex items-center gap-2 mb-4 group">
-              <span className="font-serif text-3xl text-white group-hover:text-primary transition-colors">Kelmi</span>
+            <Link href="/" className="inline-flex items-center gap-3 mb-4 group">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={IMAGES.logo} alt="Kelmi Lodge" width="44" height="44" className="w-11 h-11 object-contain" />
+              <span className="font-serif text-2xl text-white group-hover:text-primary transition-colors">Kelmi</span>
               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
             </Link>
             <p className="text-sm leading-relaxed text-white/60 max-w-sm">
               Where timeless elegance meets unparalleled hospitality. Premium lodge, world-class events, and unforgettable moments in Ughelli South.
             </p>
             <div className="mt-6 space-y-2 text-sm text-white/70">
-              <p className="flex items-center gap-2"><MapPin className="w-4 h-4 text-primary" /> Oloje Street, Ughelli South, Delta State</p>
-              <p className="flex items-center gap-2"><Phone className="w-4 h-4 text-primary" /> +234 901 497 1739</p>
-              <p className="flex items-center gap-2"><Mail className="w-4 h-4 text-primary" /> info@kelmilodgeandeventhall.com</p>
+              <p className="flex items-start gap-2"><MapPin className="w-4 h-4 text-primary shrink-0 mt-0.5" /> {ADDRESS.oneLine}</p>
+              <p className="flex items-center gap-2"><Phone className="w-4 h-4 text-primary" /> <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">{CONTACT.phoneDisplay}</a></p>
+              <p className="flex items-center gap-2"><Mail className="w-4 h-4 text-primary" /> <a href={`mailto:${CONTACT.infoEmail}`} className="hover:text-primary transition-colors">{CONTACT.infoEmail}</a></p>
             </div>
             <div className="mt-6 flex gap-3">
-              <a href="#" aria-label="Website" className="w-9 h-9 rounded-full bg-white/10 hover:bg-primary hover:text-secondary flex items-center justify-center transition-colors"><Globe className="w-4 h-4" /></a>
-              <a href="#" aria-label="Chat" className="w-9 h-9 rounded-full bg-white/10 hover:bg-primary hover:text-secondary flex items-center justify-center transition-colors"><MessageCircle className="w-4 h-4" /></a>
-              <a href="#" aria-label="Sparkles" className="w-9 h-9 rounded-full bg-white/10 hover:bg-primary hover:text-secondary flex items-center justify-center transition-colors"><Sparkles className="w-4 h-4" /></a>
+              <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="w-9 h-9 rounded-full bg-white/10 hover:bg-primary hover:text-secondary flex items-center justify-center transition-colors"><MessageCircle className="w-4 h-4" /></a>
+              <a href={`mailto:${CONTACT.infoEmail}`} aria-label="Email" className="w-9 h-9 rounded-full bg-white/10 hover:bg-primary hover:text-secondary flex items-center justify-center transition-colors"><Mail className="w-4 h-4" /></a>
+              <a href="https://www.google.com/maps/search/?api=1&query=5.5460703,5.8266481" target="_blank" rel="noopener noreferrer" aria-label="Find us on Google Maps" className="w-9 h-9 rounded-full bg-white/10 hover:bg-primary hover:text-secondary flex items-center justify-center transition-colors"><Globe className="w-4 h-4" /></a>
             </div>
           </div>
 
@@ -94,11 +98,11 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/40">
-          <p>© {new Date().getFullYear()} Kelmi Lodge & Event Hall. Crafted with warmth in Delta State.</p>
+          <p>&copy; {new Date().getFullYear()} Kelmi Lodge &amp; Event Hall. Crafted with warmth in Delta State.</p>
           <div className="flex gap-6">
-            <Link href="/about" className="hover:text-white transition-colors">Privacy</Link>
-            <Link href="/about" className="hover:text-white transition-colors">Terms</Link>
-            <Link href="/contact" className="hover:text-white transition-colors">Sitemap</Link>
+            <a href={`mailto:${CONTACT.infoEmail}?subject=Privacy%20Policy%20request`} className="hover:text-white transition-colors">Privacy</a>
+            <a href={`mailto:${CONTACT.infoEmail}?subject=Terms%20request`} className="hover:text-white transition-colors">Terms</a>
+            <Link href="/suites" className="hover:text-white transition-colors">Rooms</Link>
           </div>
         </div>
       </div>

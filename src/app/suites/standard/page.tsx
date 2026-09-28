@@ -7,11 +7,12 @@ import { Section } from "@/components/ui/section"
 import { AuroraText } from "@/components/magicui/aurora-text"
 import { BorderBeam } from "@/components/magicui/border-beam"
 import { staggerContainer, staggerItem } from "@/lib/animations"
+import { IMAGES } from "@/lib/images"
 
 const rooms = [
-  { title: "Royal Majesty Room", desc: "Regal comfort — garden outlook, handcrafted timber, tea ritual.", image: "/images/suite-honeymoon.jpg", price: "₦30,000", features: ["Garden Access", "Tea Station", "Walk-in Closet", "King Bed"] },
-  { title: "Executive Room", desc: "Business-ready — bright, quiet, workstation and premium comfort.", image: "/images/suite-garden.jpg", price: "₦25,000", features: ["Work Desk", "Mini Bar", "Rain Shower", "Two Guests"] },
-  { title: "Classic Room", desc: "Essential comfort — serene, handcrafted, thoughtfully appointed.", image: "/images/suite-family.jpg", price: "₦20,000", features: ["Garden View", "Organic Linen", "Breakfast Opt.", "Tea Station"] },
+  { title: "Royal Majesty Room", desc: "Regal comfort — garden outlook, handcrafted timber, tea ritual.", image: IMAGES.majesty.lead, price: "₦30,000", features: ["Garden Access", "Tea Station", "Walk-in Closet", "King Bed"] },
+  { title: "Executive Room", desc: "Business-ready — bright, quiet, workstation and premium comfort.", image: IMAGES.executive.lead, price: "₦25,000", features: ["Work Desk", "Mini Bar", "Rain Shower", "Two Guests"] },
+  { title: "Classic Room", desc: "Essential comfort — serene, handcrafted, thoughtfully appointed.", image: IMAGES.classic.lead, price: "₦20,000", features: ["Garden View", "Organic Linen", "Breakfast Opt.", "Tea Station"] },
 ]
 
 export default function StandardRoomsPage() {

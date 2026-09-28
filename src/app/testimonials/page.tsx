@@ -2,17 +2,17 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, type Variants } from "framer-motion"
 import { Star, Quote } from "lucide-react"
 import { AuroraText } from "@/components/magicui/aurora-text"
+import { TESTIMONIALS_HERO } from "@/lib/images"
 
-const heroBgVariants = {
+const heroBgVariants: Variants = {
   enter: { opacity: 0, scale: 1.08 },
-  center: { opacity: 1, scale: 1, transition: { duration: 1.2, ease: [0.25, 0.1, 0.25, 1] as any } },
-  exit: { opacity: 0, scale: 1.08, transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] as any } },
+  center: { opacity: 1, scale: 1, transition: { duration: 1.2, ease: [0.25, 0.1, 0.25, 1] } },
+  exit: { opacity: 0, scale: 1.08, transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] } },
 }
 
-// Same 6 reviews as Home — dedicated page
 const TESTIMONIALS = [
   {
     slug: "chinwe-obi",
@@ -20,8 +20,7 @@ const TESTIMONIALS = [
     role: "Wedding, Port Harcourt",
     date: "2 weeks ago",
     rating: 5,
-    text: "Our wedding at Kelmi was absolutely magical. The team went above and beyond every expectation. The venue was breathtaking!",
-    image: "https://images.unsplash.com/photo-1763328728510-064ea03a1f8a?w=150&q=80",
+    text: "Our wedding at Kelmi was absolutely magical. The team went above and beyond every expectation. The event hall was breathtaking!",
     source: "Google",
     isNew: true,
   },
@@ -31,19 +30,17 @@ const TESTIMONIALS = [
     role: "Business Traveler, Warri",
     date: "1 month ago",
     rating: 5,
-    text: "The perfect blend of luxury and comfort. The event hall hosted our conference flawlessly. I recommend Kelmi to everyone.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80",
+    text: "The perfect blend of comfort and service. The event hall hosted our conference flawlessly. I recommend Kelmi to everyone.",
     source: "Google",
     isNew: false,
   },
   {
     slug: "blessing-adeyemi",
     name: "Blessing Adeyemi",
-    role: "Spa Weekend, Ughelli",
+    role: "Weekend Stay, Ughelli",
     date: "3 weeks ago",
     rating: 5,
-    text: "I came for a weekend and never wanted to leave. The spa treatments were world-class and the staff treated me like royalty.",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&q=80",
+    text: "I came for a weekend and never wanted to leave. The lounge and stage were world-class and the staff treated me like royalty.",
     source: "Google",
     isNew: false,
   },
@@ -53,8 +50,7 @@ const TESTIMONIALS = [
     role: "Anniversary, Lagos",
     date: "5 days ago",
     rating: 5,
-    text: "Presidential Suite views at sunrise are unreal. Private terrace breakfast will be our forever memory. Thank you Kelmi!",
-    image: "https://images.unsplash.com/photo-1521119989659-a83eee488004?w=150&q=80",
+    text: "Presidential Suite views at sunrise are unreal. A private terrace breakfast will be our forever memory. Thank you Kelmi!",
     source: "Google",
     isNew: true,
   },
@@ -65,28 +61,32 @@ const TESTIMONIALS = [
     date: "1 week ago",
     rating: 5,
     text: "We hosted 120 guests. Everything was seamless — from planning to last dance. Kelmi is Delta's hidden luxury gem.",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&q=80",
     source: "Google",
     isNew: false,
   },
   {
     slug: "david-efeturi",
     name: "David Efeturi",
-    role: "Chef's Table, Ughelli",
+    role: "Evening Guest, Ughelli",
     date: "2 months ago",
     rating: 5,
     text: "The lounge & snooker bar redefined evenings for me — curated drinks, great vibe — truly metropolitan level in the heart of Delta.",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&q=80",
     source: "Google",
     isNew: false,
   },
 ]
 
-const HERO_IMAGES = [
-  "/images/suite-presidential.jpg",
-  "/images/venue-ballroom.jpg",
-  "/images/suite-family.jpg",
-]
+/** Initials avatar. We have no real guest photos, so we don't fake any. */
+function initials(name: string) {
+  return name
+    .split(/[\s&]+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0]?.toUpperCase() ?? "")
+    .join("")
+}
+
+const HERO_IMAGES = TESTIMONIALS_HERO
 
 function Stars({ rating }: { rating: number }) {
   return (
@@ -167,7 +167,7 @@ export default function TestimonialsPage() {
               <article key={t.slug} className="bg-white rounded-lg border border-secondary/10 shadow-sm p-6 flex flex-col h-full relative group hover:shadow-md transition-shadow">
                 {t.isNew && <span className="absolute top-4 right-4 text-[0.6rem] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full bg-primary text-secondary">New</span>}
                 <div className="flex items-center gap-4 mb-4">
-                  <img src={t.image} alt={`${t.name} — guest photo`} width="96" height="96" className="w-12 h-12 rounded-full object-cover border border-secondary/10" loading="lazy" />
+                  <div className="w-12 h-12 rounded-full bg-secondary text-primary flex items-center justify-center font-serif text-sm font-bold border border-primary/20 shrink-0" aria-hidden="true">{initials(t.name)}</div>
                   <div className="min-w-0">
                     <h3 className="font-semibold text-secondary truncate">{t.name}</h3>
                     <p className="text-xs text-neutral-500">{t.role} • {t.date}</p>

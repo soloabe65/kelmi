@@ -3,46 +3,42 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
-import { ArrowRight, Star, MapPin, Phone, Sparkles, PartyPopper, Trophy, Shield, Quote, Calendar, Users, Award, ChevronRight } from "lucide-react"
-import { fadeUp, staggerContainer, staggerItem } from "@/lib/animations"
+import { ArrowRight, MapPin, Phone, Sparkles, PartyPopper, Trophy, Calendar, Users, Award, ChevronRight, Landmark } from "lucide-react"
+import { fadeUp, staggerContainer } from "@/lib/animations"
+import { HOME_HERO, IMAGES } from "@/lib/images"
+import { ADDRESS, CONTACT, LOCATION, RESPONSE_TIME } from "@/lib/site"
 import { Section, SectionHeader } from "@/components/ui/section"
 import { AuroraText } from "@/components/magicui/aurora-text"
 import { BorderBeam } from "@/components/magicui/border-beam"
 import { BentoGrid, BentoCard } from "@/components/magicui/bento-grid"
-import { Marquee } from "@/components/magicui/marquee"
 import { ShineBorder } from "@/components/magicui/shine-border"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import { Drawer, DrawerContent, DrawerTrigger, DrawerTitle, DrawerDescription, DrawerHeader } from "@/components/ui/drawersheet"
 import { Toaster, toast } from "sonner"
 
-const heroImages = [
-  "/images/suite-presidential.jpg",
-  "/images/suite-executive.jpg",
-  "/images/venue-ballroom.jpg",
-  "/images/suite-family.jpg",
-]
+const heroImages = HOME_HERO
 
 const suites = [
   {
     title: "Royal Executive Suite (Gold)",
-    desc: "Flagship suite — panoramic terrace, private living, handcrafted teak & brass.",
-    image: "/images/suite-presidential.jpg",
+    desc: "Flagship suite — private living, private terrace, and butler service.",
+    image: IMAGES.gold.lead,
     price: "₦50,000",
     badge: "Flagship",
     href: "/suites/presidential",
   },
   {
     title: "Royal Executive Suite (Silver)",
-    desc: "Elevated elegance — spacious lounge, forest views, premium amenities.",
-    image: "/images/suite-executive.jpg",
+    desc: "Elevated elegance — spacious lounge, premium minibar and rain shower.",
+    image: IMAGES.executive.lead,
     price: "₦40,000",
     badge: "Most Booked",
     href: "/suites/presidential",
   },
   {
     title: "Presidential Apartment",
-    desc: "Sophisticated apartment-style living with curated art and soft linen.",
-    image: "/images/suite-penthouse.jpg",
+    desc: "Apartment-style living with curated art, living area and kitchenette.",
+    image: IMAGES.apartment.lead,
     price: "₦35,000",
     badge: "Apartment",
     href: "/suites/presidential",
@@ -50,7 +46,7 @@ const suites = [
   {
     title: "Royal Majesty Room",
     desc: "Regal comfort with garden outlook and handcrafted interiors.",
-    image: "/images/suite-honeymoon.jpg",
+    image: IMAGES.majesty.lead,
     price: "₦30,000",
     badge: "Royal Choice",
     href: "/suites/standard",
@@ -58,7 +54,7 @@ const suites = [
   {
     title: "Executive Room",
     desc: "Modern business-ready room — workstation, rain shower, quiet luxury.",
-    image: "/images/suite-garden.jpg",
+    image: IMAGES.executive.photos[1],
     price: "₦25,000",
     badge: "Business",
     href: "/suites/standard",
@@ -66,10 +62,10 @@ const suites = [
   {
     title: "Classic Room",
     desc: "Our essential comfort — serene, bright, and thoughtfully appointed.",
-    image: "/images/suite-family.jpg",
+    image: IMAGES.classic.lead,
     price: "₦20,000",
     badge: "Classic",
-    href: "/suites",
+    href: "/suites/standard",
   },
 ]
 
@@ -80,7 +76,7 @@ const bentoAmenities = [
     description: "Private lounge with stage — intimate gatherings, live music, and bespoke service.",
     href: "/amenities",
     cta: "Explore lounge",
-    background: <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url(https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&q=80)" }} />,
+    background: <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${IMAGES.lounge.lead})` }} />,
     className: "lg:row-start-1 lg:row-end-3 lg:col-start-1 lg:col-end-2",
   },
   {
@@ -89,27 +85,27 @@ const bentoAmenities = [
     description: "Classic snooker bar — styled lounge, curated drinks, friendly competition.",
     href: "/amenities",
     cta: "View snooker bar",
-    background: <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url(https://images.unsplash.com/photo-1515620268728-658ed88b02f3?w=800&q=80)" }} />,
+    background: <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${IMAGES.snookerBar.lead})` }} />,
     className: "lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2",
   },
   {
-    Icon: Trophy,
-    name: "Snooker Bar Experience",
-    description: "Classic snooker (pool) bar — curated drinks, friendly matches, lounge vibe.",
-    href: "/amenities",
-    cta: "Visit bar",
-    background: <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url(https://images.unsplash.com/photo-1515620268728-658ed88b02f3?w=800&q=80)" }} />,
+    Icon: Landmark,
+    name: "Event Hall",
+    description: "Our flagship ballroom — stage, dance floor and immersive sound for up to 400 seated.",
+    href: "/events",
+    cta: "Explore the hall",
+    background: <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${IMAGES.eventHall.lead})` }} />,
     className: "lg:col-start-2 lg:col-end-3 lg:row-start-2 lg:row-end-3",
   },
   {
     Icon: Phone,
     name: "24/7 Concierge & Support",
-    description: "Round-the-clock care — reservations, airport pickup & tailored help. Call +234 901 497 1739 or chat on WhatsApp.",
+    description: `Round-the-clock care — reservations, airport pickup & tailored help. Call ${CONTACT.phoneDisplay} or chat on WhatsApp.`,
     href: "/contact",
-    cta: "Contact us → +234 901 497 1739",
+    cta: `Contact us → ${CONTACT.phoneDisplay}`,
     background: (
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url(https://images.unsplash.com/photo-1521791136064-7986c86c94a1?w=800&q=80)" }} />
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${IMAGES.frontDesk.lead})` }} />
         <div className="absolute inset-0 bg-gradient-to-br from-secondary/90 via-secondary/70 to-black/60" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,_rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,_rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:28px_28px] opacity-30" />
       </div>
@@ -118,44 +114,6 @@ const bentoAmenities = [
   },
 ]
 
-const testimonials = [
-  {
-    name: "Chinwe Obi",
-    role: "Wedding • Port Harcourt",
-    text: "Our wedding at Kelmi was absolutely magical. The team went above and beyond every expectation. The ballroom was breathtaking!",
-    image: "https://images.unsplash.com/photo-1763328728510-064ea03a1f8a?w=150&q=80",
-  },
-  {
-    name: "Emeka Okafor",
-    role: "Business • Warri",
-    text: "The perfect blend of luxury and comfort. Our conference was flawless — AV, catering, hospitality all world-class.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80",
-  },
-  {
-    name: "Blessing Adeyemi",
-    role: "Spa Weekend • Ughelli",
-    text: "I came for a weekend and never wanted to leave. The spa treatments were world-class and the staff treated me like royalty.",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&q=80",
-  },
-  {
-    name: "Tunde & Amaka",
-    role: "Anniversary • Lagos",
-    text: "Presidential Suite views at sunrise are unreal. Private terrace breakfast will be our forever memory. Thank you Kelmi!",
-    image: "https://images.unsplash.com/photo-1521119989659-a83eee488004?w=150&q=80",
-  },
-  {
-    name: "Sarah Johnson",
-    role: "Retreat • Asaba",
-    text: "We hosted 120 guests. Everything was seamless — from planning to last dance. Kelmi is Delta's hidden luxury gem.",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&q=80",
-  },
-  {
-    name: "David Efeturi",
-    role: "Chef's Table • Ughelli",
-    text: "The lounge & snooker bar redefined evenings for me — curated drinks, great vibe — truly metropolitan level in the heart of Delta.",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&q=80",
-  },
-]
 
 export default function Home() {
   const [heroIndex, setHeroIndex] = useState(0)
@@ -291,8 +249,8 @@ export default function Home() {
         <div className="relative max-w-7xl mx-auto px-6 py-8 grid grid-cols-2 lg:grid-cols-4 gap-8">
           {[
             { value: "500+", label: "Events hosted", sub: "Weddings & conferences" },
-            { value: "4.9", label: "Guest rating", sub: "1,200+ reviews" },
-            { value: "30+", label: "Premium suites", sub: "Curated interiors" },
+            { value: "4.9", label: "Guest rating", sub: "Verified guest reviews" },
+            { value: "6", label: "Room classes", sub: "₦20,000 – ₦50,000" },
             { value: "24/7", label: "Concierge", sub: "Dedicated service" },
           ].map((s, i) => (
             <motion.div key={s.label} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.07 }} className="text-center lg:text-left">
@@ -365,13 +323,13 @@ export default function Home() {
 
       {/* SATELLITE VIEW — replaces testimonials (moved to /testimonials) */}
       <Section className="overflow-hidden">
-        <SectionHeader title="Find Us From Above" subtitle="Satellite view • GRWG+887, KM 48 DSC Expressway, Otokutu — your landmark from the sky." />
+        <SectionHeader title="Find Us From Above" subtitle={`Satellite view • ${LOCATION.plusCode}, ${ADDRESS.short} — your landmark from the sky.`} />
         <div className="grid lg:grid-cols-5 gap-6 items-stretch">
           <div className="lg:col-span-3 rounded-[22px] overflow-hidden border border-neutral-200 shadow-sm bg-white">
             <div className="relative h-[420px] w-full">
               <iframe
                 title="Kelmi Lodge Satellite View"
-                src="https://www.google.com/maps?q=5.5460703,5.8266481&z=19&t=k&output=embed"
+                src={LOCATION.satelliteEmbed}
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -380,7 +338,7 @@ export default function Home() {
                 referrerPolicy="no-referrer-when-downgrade"
               />
               <div className="absolute bottom-3 left-3 bg-white/95 backdrop-blur rounded-full px-3 py-1.5 text-xs font-medium text-secondary shadow flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" /> Satellite • 5.5460703, 5.8266481
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" /> Satellite • {LOCATION.lat}, {LOCATION.lng}
               </div>
             </div>
           </div>
@@ -388,26 +346,26 @@ export default function Home() {
             <div className="rounded-[22px] border border-neutral-200 bg-white p-6 shadow-sm">
               <h3 className="font-serif text-xl text-secondary">Kelmi Lodge & Event Hall</h3>
               <p className="text-sm text-neutral-500 mt-2 leading-relaxed">
-                <strong className="text-secondary">GRWG+887</strong> • KM 48, DSC Expressway<br />
-                Otokutu, Delta 333117, Nigeria<br />
-                <span className="inline-flex items-center gap-2 mt-2 text-xs font-medium text-primary">Accuracy ~ • Satellite verified</span>
+                <strong className="text-secondary">{LOCATION.plusCode}</strong> • {ADDRESS.street}<br />
+                {ADDRESS.area}, {ADDRESS.state} {ADDRESS.postalCode}, {ADDRESS.country}<br />
+                <span className="inline-flex items-center gap-2 mt-2 text-xs font-medium text-primary">Satellite verified</span>
               </p>
               <div className="mt-4 grid grid-cols-2 gap-3 text-xs">
                 <div className="rounded-xl bg-neutral-50 border border-neutral-200 p-3">
                   <p className="text-neutral-400 uppercase tracking-wide">Latitude</p>
-                  <p className="font-mono font-medium text-secondary">5.5460703</p>
+                  <p className="font-mono font-medium text-secondary">{LOCATION.lat}</p>
                 </div>
                 <div className="rounded-xl bg-neutral-50 border border-neutral-200 p-3">
                   <p className="text-neutral-400 uppercase tracking-wide">Longitude</p>
-                  <p className="font-mono font-medium text-secondary">5.8266481</p>
+                  <p className="font-mono font-medium text-secondary">{LOCATION.lng}</p>
                 </div>
               </div>
               <div className="flex flex-wrap gap-2 mt-5">
-                <a href="https://www.google.com/maps/search/?api=1&query=5.5460703,5.8266481" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-secondary text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-black transition-colors">
+                <a href={LOCATION.mapsUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-secondary text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-black transition-colors">
                   Open in Google Maps
                 </a>
-                <a href="https://maps.google.com/?q=GRWG%2B887%20KM%2048%20DSC%20Expressway%20Otokutu" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-neutral-200 px-5 py-2.5 rounded-full text-sm font-medium hover:bg-neutral-50 transition-colors">
-                  Plus Code: GRWG+887
+                <a href={`https://maps.google.com/?q=${encodeURIComponent(`${LOCATION.plusCode} ${ADDRESS.short}`)}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-neutral-200 px-5 py-2.5 rounded-full text-sm font-medium hover:bg-neutral-50 transition-colors">
+                  Plus Code: {LOCATION.plusCode}
                 </a>
               </div>
             </div>
@@ -415,7 +373,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(197,165,90,0.12),transparent_60%)] pointer-events-none" />
               <p className="relative text-sm font-medium tracking-[0.14em] uppercase text-primary">Visit us</p>
               <p className="relative font-serif text-lg leading-tight mt-2">Easy access from Warri • Sapele • Ughelli</p>
-              <p className="relative text-sm text-white/70 mt-2">KM 48 DSC Expressway — look for the Kelmi Lodge landmark. Valet & 24/7 concierge on arrival.</p>
+              <p className="relative text-sm text-white/70 mt-2">{ADDRESS.short} — look for the Kelmi Lodge landmark. Valet & 24/7 concierge on arrival.</p>
               <Link href="/contact" className="relative inline-flex items-center gap-2 mt-4 bg-primary text-secondary px-5 py-2.5 rounded-full text-sm font-medium hover:bg-primary-dark transition-colors">
                 Get directions <ArrowRight className="w-3.5 h-3.5" />
               </Link>
@@ -428,9 +386,9 @@ export default function Home() {
       <section className="py-16 bg-white border-y border-neutral-100">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-3 gap-6">
           {[
-            { icon: MapPin, title: "Prime Delta Location", desc: "Oloje Street, Ughelli South — easy access to Warri, Asaba, and the forest reserve.", cta: "Get directions", href: "/contact" },
+            { icon: MapPin, title: "Prime Delta Location", desc: `${ADDRESS.street} — easy access to Warri, Asaba, and the forest reserve.`, cta: "Get directions", href: "/contact" },
             { icon: Phone, title: "Concierge 24/7", desc: "Airport pickup, bespoke excursions, and on-demand housekeeping.", cta: "Chat on WhatsApp", href: "/contact" },
-            { icon: Calendar, title: "Events & Weddings", desc: "Ballroom for 500, garden terrace for 200, and full planning support.", cta: "Plan event", href: "/events" },
+            { icon: Calendar, title: "Events & Weddings", desc: "Event Hall seating 400, garden terrace for 200, and full planning support.", cta: "Plan event", href: "/events" },
           ].map((card, i) => (
             <motion.div key={card.title} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }} className="group relative rounded-2xl border border-neutral-200 p-7 bg-white hover:shadow-lg hover:shadow-neutral-100 transition-all">
               <card.icon className="w-7 h-7 text-primary mb-4" />
@@ -458,7 +416,7 @@ export default function Home() {
                 Ready to experience <AuroraText className="font-serif font-bold">Kelmi</AuroraText>?
               </h2>
               <p className="relative mt-4 text-neutral-500 max-w-xl mx-auto">
-                Book your stay, plan your event, or simply reach out. Our team replies within 2 hours — best rate when you book direct.
+                Book your stay, plan your event, or simply reach out. Our team replies within {RESPONSE_TIME} — best rate when you book direct.
               </p>
               <div className="relative flex flex-wrap gap-3 justify-center mt-8">
                 <Link href="/book" onClick={() => toast.success("Redirecting to booking...")} className="inline-flex items-center gap-2 bg-secondary text-white px-8 py-4 rounded-full font-medium hover:bg-black transition-colors shadow-lg">

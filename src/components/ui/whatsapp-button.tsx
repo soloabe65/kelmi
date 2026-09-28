@@ -1,9 +1,9 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { CONTACT } from "@/lib/site"
 
-const PHONE = "2349014971739"
-const WA_URL = `https://wa.me/${PHONE}`
+const WA_URL = CONTACT.whatsappUrl
 
 export default function WhatsAppButton() {
   return (

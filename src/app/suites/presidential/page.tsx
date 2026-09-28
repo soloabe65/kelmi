@@ -8,11 +8,12 @@ import { AuroraText } from "@/components/magicui/aurora-text"
 import { BorderBeam } from "@/components/magicui/border-beam"
 import { ShineBorder } from "@/components/magicui/shine-border"
 import { staggerContainer, staggerItem } from "@/lib/animations"
+import { IMAGES } from "@/lib/images"
 
 const suites = [
-  { title: "Royal Executive Suite (Gold)", desc: "Flagship — panoramic terrace, private living, jacuzzi, butler. Our most prestigious.", image: "/images/suite-presidential.jpg", price: "₦50,000", features: ["Panoramic Views", "Private Terrace", "Jacuzzi", "Butler Service"] },
-  { title: "Royal Executive Suite (Silver)", desc: "Elevated elegance — spacious lounge, forest views, premium minibar.", image: "/images/suite-executive.jpg", price: "₦40,000", features: ["Forest Views", "Spacious Lounge", "Premium Minibar", "Rain Shower"] },
-  { title: "Presidential Apartment", desc: "Apartment-style — curated art, living area, kitchenette, garden terrace.", image: "/images/suite-penthouse.jpg", price: "₦35,000", features: ["Living Area", "Kitchenette", "Garden Terrace", "Workstation"] },
+  { title: "Royal Executive Suite (Gold)", desc: "Flagship — panoramic terrace, private living, jacuzzi, butler. Our most prestigious.", image: IMAGES.gold.lead, price: "₦50,000", features: ["Panoramic Views", "Private Terrace", "Jacuzzi", "Butler Service"] },
+  { title: "Royal Executive Suite (Silver)", desc: "Elevated elegance — spacious lounge, forest views, premium minibar.", image: IMAGES.executive.lead, price: "₦40,000", features: ["Forest Views", "Spacious Lounge", "Premium Minibar", "Rain Shower"] },
+  { title: "Presidential Apartment", desc: "Apartment-style — curated art, living area, kitchenette, garden terrace.", image: IMAGES.apartment.lead, price: "₦35,000", features: ["Living Area", "Kitchenette", "Garden Terrace", "Workstation"] },
 ]
 
 export default function PresidentialPage() {

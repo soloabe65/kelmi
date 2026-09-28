@@ -7,12 +7,13 @@ import { AuroraText } from "@/components/magicui/aurora-text"
 import { ShineBorder } from "@/components/magicui/shine-border"
 import { fadeUp, staggerContainer } from "@/lib/animations"
 import { toast, Toaster } from "sonner"
+import { ADDRESS, CONTACT, LOCATION, RESPONSE_TIME } from "@/lib/site"
 
 const contactInfo = [
-  { icon: MapPin, label: "Address", value: "KM 4, DSC Expressway by Karika Filling Station, Otokutu, Ughelli South, Delta State" },
-  { icon: Phone, label: "Phone / WhatsApp", value: "+234 901 497 1739" },
-  { icon: Mail, label: "Email", value: "info@kelmilodgeandeventhall.com" },
-  { icon: Clock, label: "Front Desk", value: "Open 24 hours • Best reply within 2h" },
+  { icon: MapPin, label: "Address", value: ADDRESS.oneLine },
+  { icon: Phone, label: "Phone / WhatsApp", value: CONTACT.phoneDisplay },
+  { icon: Mail, label: "Email", value: CONTACT.infoEmail },
+  { icon: Clock, label: "Front Desk", value: `Open 24 hours • Best reply within ${RESPONSE_TIME}` },
 ]
 
 export default function ContactPage() {
@@ -40,33 +41,77 @@ export default function ContactPage() {
                 </div>
               </motion.div>
             ))}
-            <div className="rounded-2xl overflow-hidden border border-neutral-200 bg-neutral-100 h-64 flex items-center justify-center relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10" />
-              <p className="relative text-sm text-neutral-500 flex items-center gap-2"><MapPin className="w-4 h-4 text-primary" /> Map — Otokutu, Ughelli South</p>
+            <div className="rounded-2xl overflow-hidden border border-neutral-200 bg-neutral-100 h-64 relative">
+              <iframe
+                title="Kelmi Lodge location map"
+                src={`https://www.google.com/maps?q=${LOCATION.lat},${LOCATION.lng}&z=15&output=embed`}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="absolute inset-0"
+              />
+              <a
+                href={LOCATION.directionsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute bottom-3 left-3 bg-white/95 backdrop-blur rounded-full px-3 py-1.5 text-xs font-medium text-secondary shadow flex items-center gap-2 hover:bg-white transition-colors"
+              >
+                <MapPin className="w-3 h-3 text-primary" /> Get directions
+              </a>
             </div>
           </motion.div>
 
-          <motion.form initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="lg:col-span-3" onSubmit={(e) => { e.preventDefault(); toast.success("Message sent — we’ll reply within 2 hours!") }}>
+          <motion.form
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="lg:col-span-3"
+            onSubmit={(e) => {
+              // Static export - no server. Hand the enquiry to WhatsApp so it
+              // genuinely reaches the reservations team.
+              e.preventDefault()
+              const data = new FormData(e.currentTarget)
+              const name = String(data.get("name") ?? "").trim()
+              const email = String(data.get("email") ?? "").trim()
+              const phone = String(data.get("phone") ?? "").trim()
+              const subject = String(data.get("subject") ?? "General Inquiry")
+              const message = String(data.get("message") ?? "").trim()
+              const text = [
+                `*Enquiry from the website*`,
+                ``,
+                `Name: ${name || "—"}`,
+                `Email: ${email || "—"}`,
+                `Phone: ${phone || "—"}`,
+                `Subject: ${subject}`,
+                ``,
+                message,
+              ].join("\n")
+              window.open(`${CONTACT.whatsappUrl}?text=${encodeURIComponent(text)}`, "_blank")
+              toast.success(`Opening WhatsApp — we'll reply within ${RESPONSE_TIME}.`)
+            }}
+          >
             <ShineBorder borderWidth={1} duration={14} shineColor={["#C5A55A","#E8D5B5"]} className="bg-white shadow-sm">
               <div className="p-7 md:p-8 space-y-5">
                 <h3 className="font-serif text-xl text-secondary flex items-center gap-2"><MessageCircle className="w-5 h-5 text-primary" /> Send a message</h3>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-secondary mb-1.5">Full Name</label>
-                    <input required placeholder="John Doe" className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm" />
+                    <label htmlFor="name" className="block text-sm font-medium text-secondary mb-1.5">Full Name</label>
+                    <input id="name" name="name" required placeholder="John Doe" className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-secondary mb-1.5">Email</label>
-                    <input type="email" required placeholder="john@example.com" className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm" />
+                    <label htmlFor="email" className="block text-sm font-medium text-secondary mb-1.5">Email</label>
+                    <input id="email" name="email" type="email" required placeholder="john@example.com" className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm" />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-secondary mb-1.5">Phone</label>
-                  <input type="tel" placeholder="+234 700 000 0000" className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm" />
+                  <label htmlFor="phone" className="block text-sm font-medium text-secondary mb-1.5">Phone</label>
+                  <input id="phone" name="phone" type="tel" placeholder="+234 800 000 0000" className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-secondary mb-1.5">Subject</label>
-                  <select className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm">
+                  <label htmlFor="subject" className="block text-sm font-medium text-secondary mb-1.5">Subject</label>
+                  <select id="subject" name="subject" className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm">
                     <option>General Inquiry</option>
                     <option>Room Reservation</option>
                     <option>Event Booking</option>
@@ -75,11 +120,11 @@ export default function ContactPage() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-secondary mb-1.5">Message</label>
-                  <textarea rows={5} required placeholder="Tell us how we can help..." className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm resize-none" />
+                  <label htmlFor="message" className="block text-sm font-medium text-secondary mb-1.5">Message</label>
+                  <textarea id="message" name="message" rows={5} required placeholder="Tell us how we can help..." className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm resize-none" />
                 </div>
                 <button type="submit" className="w-full inline-flex items-center justify-center gap-2 bg-secondary text-white py-4 rounded-full font-medium hover:bg-black transition-colors"><Send className="w-4 h-4" /> Send message</button>
-                <p className="text-xs text-center text-neutral-400">Prefer WhatsApp? <a href="https://wa.me/2349014971739" target="_blank" className="text-primary underline">Chat now</a></p>
+                <p className="text-xs text-center text-neutral-400">Submitting opens WhatsApp with your message ready to send. Prefer email? <a href={`mailto:${CONTACT.infoEmail}`} className="text-primary underline">{CONTACT.infoEmail}</a></p>
               </div>
             </ShineBorder>
           </motion.form>

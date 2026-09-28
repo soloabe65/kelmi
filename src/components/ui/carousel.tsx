@@ -67,6 +67,10 @@ const Carousel = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivEl
 
     React.useEffect(() => {
       if (!api) return
+      // Upstream shadcn/ui + embla pattern: the initial onSelect seeds
+      // canScrollPrev/Next so the arrows are correct on first paint. Reading
+      // the instance is an external-system sync, not a derived-state set.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       onSelect(api)
       api.on("reInit", onSelect)
       api.on("select", onSelect)
