@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { motion, AnimatePresence, type Variants } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import CtaBanner from "@/components/ui/cta-banner"
 import { AuroraText } from "@/components/magicui/aurora-text"
 import { IMAGES } from "@/lib/images"
@@ -98,12 +98,6 @@ const ROOMS: Room[] = [
   },
 ]
 
-const heroBgVariants: Variants = {
-  enter: { opacity: 0, scale: 1.08 },
-  center: { opacity: 1, scale: 1, transition: { duration: 1.2, ease: [0.25, 0.1, 0.25, 1] } },
-  exit: { opacity: 0, scale: 1.08, transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] } },
-}
-
 export default function SuitesPage() {
   const [filter, setFilter] = useState("all")
   const [slideIndex, setSlideIndex] = useState(0)
@@ -111,37 +105,35 @@ export default function SuitesPage() {
   const activeRooms = filter === "all" ? null : ROOMS.filter((r) => r.type === filter)
 
   useEffect(() => {
-    const t = setInterval(() => setSlideIndex((i) => (i + 1) % heroSlides.length), 4500)
+    const t = setInterval(() => setSlideIndex((i) => (i + 1) % heroSlides.length), 5200)
     return () => clearInterval(t)
   }, [heroSlides.length])
 
   return (
     <>
-      {/* Hero — Beechnut 60vh rotating, Kelmi premium */}
+      {/* Hero — room gallery, Kelmi premium */}
       <section className="relative h-[60vh] min-h-[420px] flex flex-col items-center justify-center text-center overflow-hidden bg-secondary" aria-label="Rooms and Suites at Kelmi Lodge">
-        <div className="absolute inset-0">
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={slideIndex}
-              src={heroSlides[slideIndex]}
-              alt=""
-              width="1920"
-              height="1080"
-              variants={heroBgVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              className="w-full h-full object-cover"
-            />
-          </AnimatePresence>
-          <div className="absolute inset-0 bg-gradient-to-b from-secondary/70 via-secondary/45 to-secondary/75" />
-        </div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={slideIndex}
+            initial={{ opacity: 0, scale: 1.08 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.4, ease: "easeInOut" }}
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${heroSlides[slideIndex]})` }}
+          />
+        </AnimatePresence>
+        <div className="absolute inset-0 bg-gradient-to-b from-secondary/70 via-secondary/45 to-secondary/75" />
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="relative z-10 px-4">
           <span className="text-xs font-semibold tracking-[0.28em] uppercase text-primary mb-3 block">Kelmi Lodge & Event Hall • kelmilodgeandeventhall.com</span>
           <h1 className="font-serif text-[clamp(2.8rem,6vw,4.4rem)] font-bold text-white leading-tight mb-4">
             Rooms & <em className="italic text-primary not-italic"><AuroraText className="font-serif font-bold">Suites</AuroraText></em>
           </h1>
         </motion.div>
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 rounded-full bg-black/40 backdrop-blur px-4 py-1.5 text-xs font-medium tabular-nums text-white/90" aria-live="polite">
+          {slideIndex + 1} / {heroSlides.length}
+        </div>
       </section>
 
       {/* Filter — Beechnut pill bar, Kelmi colors */}

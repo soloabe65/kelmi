@@ -1,9 +1,10 @@
 "use client"
 
 import Link from "next/link"
-import { motion } from "framer-motion"
+import { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import { Award, Crown, ArrowRight, Check } from "lucide-react"
-import { IMAGES } from "@/lib/images"
+import { IMAGES, HOME_HERO } from "@/lib/images"
 import { ADDRESS } from "@/lib/site"
 import CtaBanner from "@/components/ui/cta-banner"
 import { AuroraText } from "@/components/magicui/aurora-text"
@@ -51,18 +52,40 @@ const CONDUCT_ITEMS = [
 ]
 
 export default function AboutPage() {
+  const [heroIndex, setHeroIndex] = useState(0)
+
+  useEffect(() => {
+    const id = setInterval(() => setHeroIndex((p) => (p + 1) % HOME_HERO.length), 5200)
+    return () => clearInterval(id)
+  }, [])
+
   return (
     <>
-      {/* Hero — Beechnut 60vh navy + gold italic, Kelmi premium */}
+      {/* Hero — exterior gallery, Kelmi premium */}
       <section className="relative h-[60vh] min-h-[380px] flex flex-col items-center justify-center text-center overflow-hidden bg-secondary">
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary via-[#1a3536] to-secondary" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(197,165,90,0.08)_0%,_transparent_60%)]" />
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={heroIndex}
+            initial={{ opacity: 0, scale: 1.08 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.4, ease: "easeInOut" }}
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${HOME_HERO[heroIndex]})` }}
+          />
+        </AnimatePresence>
+        <div className="absolute inset-0 bg-gradient-to-b from-secondary/80 via-secondary/50 to-secondary/85" />
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="relative z-10 px-4">
           <span className="font-sans text-xs font-semibold tracking-[0.28em] uppercase text-primary mb-3 block">Kelmi Lodge &amp; Event Hall • Otokutu</span>
           <h1 className="font-serif text-[clamp(2.8rem,6vw,4.4rem)] font-bold text-white leading-tight mb-4">
             Corporate <em className="italic text-primary not-italic"><AuroraText className="font-serif font-bold">Profile</AuroraText></em>
           </h1>
         </motion.div>
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
+          {HOME_HERO.map((_, i) => (
+            <button key={i} onClick={() => setHeroIndex(i)} aria-label={`Go to slide ${i + 1}`} className={`transition-all duration-400 rounded-full ${i === heroIndex ? "w-8 h-2 bg-primary" : "w-2 h-2 bg-white/40 hover:bg-white/70"}`} />
+          ))}
+        </div>
       </section>
 
       {/* GM Word — white card, circle image with gold ring, quote */}

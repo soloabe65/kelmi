@@ -1,6 +1,7 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import { Phone, Mail, MapPin, Clock, Send, Sparkles, MessageCircle } from "lucide-react"
 import { Section } from "@/components/ui/section"
 import { AuroraText } from "@/components/magicui/aurora-text"
@@ -9,6 +10,7 @@ import { fadeUp, staggerContainer } from "@/lib/animations"
 import { toast, Toaster } from "sonner"
 import CtaBanner from "@/components/ui/cta-banner"
 import { ADDRESS, CONTACT, LOCATION, RESPONSE_TIME } from "@/lib/site"
+import { CONTACT_HERO } from "@/lib/images"
 
 const contactInfo = [
   { icon: MapPin, label: "Address", value: ADDRESS.oneLine },
@@ -18,15 +20,38 @@ const contactInfo = [
 ]
 
 export default function ContactPage() {
+  const [heroIndex, setHeroIndex] = useState(0)
+
+  useEffect(() => {
+    const id = setInterval(() => setHeroIndex((p) => (p + 1) % CONTACT_HERO.length), 5200)
+    return () => clearInterval(id)
+  }, [])
+
   return (
     <>
       <Toaster richColors />
-      <section className="relative pt-32 pb-20 bg-neutral-900 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(197,165,90,0.12),transparent_60%)]" />
-        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
+      <section className="relative pt-32 pb-24 bg-neutral-900 overflow-hidden min-h-[560px] flex items-center">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={heroIndex}
+            initial={{ opacity: 0, scale: 1.08 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.4, ease: "easeInOut" }}
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${CONTACT_HERO[heroIndex]})` }}
+          />
+        </AnimatePresence>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/35 to-black/75" />
+        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center w-full">
           <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="inline-flex items-center gap-2 text-primary tracking-[0.2em] uppercase text-xs font-medium border border-primary/20 bg-primary/10 px-4 py-1.5 rounded-full"><Sparkles className="w-3 h-3" /> Get In Touch</motion.p>
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="font-serif text-4xl md:text-6xl text-white mt-6">Contact & <AuroraText className="font-serif font-bold">Bookings</AuroraText></motion.h1>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-white/60 mt-4 max-w-2xl mx-auto text-lg">We reply within 2 hours — calls, WhatsApp, or the form below.</motion.p>
+        </div>
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
+          {CONTACT_HERO.map((_, i) => (
+            <button key={i} onClick={() => setHeroIndex(i)} aria-label={`Go to slide ${i + 1}`} className={`transition-all duration-400 rounded-full ${i === heroIndex ? "w-8 h-2 bg-primary" : "w-2 h-2 bg-white/40 hover:bg-white/70"}`} />
+          ))}
         </div>
       </section>
 

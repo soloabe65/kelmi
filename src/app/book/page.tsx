@@ -57,6 +57,9 @@ const rooms = [
   },
 ]
 
+/** Book hero — the six room leads, in booking order. */
+const heroImages = rooms.map((r) => r.image)
+
 function formatNaira(amount: number) {
   return `₦${amount.toLocaleString("en-US")}`
 }
@@ -91,6 +94,7 @@ export default function BookingPage() {
   const [requests, setRequests] = useState("")
   const [booked, setBooked] = useState(false)
   const [stepError, setStepError] = useState("")
+  const [heroIndex, setHeroIndex] = useState(0)
   const topRef = useRef<HTMLDivElement>(null)
 
   const nights = useMemo(() => {
@@ -116,6 +120,11 @@ export default function BookingPage() {
   useEffect(() => {
     if (topRef.current) topRef.current.scrollIntoView({ behavior: "smooth" })
   }, [step])
+
+  useEffect(() => {
+    const id = setInterval(() => setHeroIndex((p) => (p + 1) % heroImages.length), 5200)
+    return () => clearInterval(id)
+  }, [])
 
   const canProceedStep1 = checkIn && checkOut && selectedRoom && nights > 0
   const canProceedStep2 = fullName.trim() && email.trim() && phone.trim()
@@ -286,20 +295,41 @@ export default function BookingPage() {
   return (
     <>
       <Toaster richColors position="top-right" />
-      <section className="pt-32 pb-20 bg-neutral-50 min-h-screen relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(197,165,90,0.07),transparent_60%)] pointer-events-none" />
-        <div className="max-w-4xl mx-auto px-6 relative" ref={topRef}>
-          <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex items-center justify-center gap-2 text-primary tracking-[0.18em] uppercase text-xs font-medium mb-3"><Sparkles className="w-3 h-3" /> Direct booking • Best rate</motion.p>
+      <section className="relative pt-32 pb-24 bg-neutral-900 overflow-hidden min-h-[520px] flex items-center">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={heroIndex}
+            initial={{ opacity: 0, scale: 1.08 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.4, ease: "easeInOut" }}
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${heroImages[heroIndex]})` }}
+          />
+        </AnimatePresence>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/35 to-black/75" />
+        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center w-full">
+          <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="inline-flex items-center gap-2 text-primary tracking-[0.18em] uppercase text-xs font-medium mb-3"><Sparkles className="w-3 h-3" /> Direct booking • Best rate</motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="font-serif text-3xl md:text-5xl text-secondary text-center mb-3"
+            className="font-serif text-3xl md:text-5xl text-white text-center mb-3"
           >
             Book Your <AuroraText className="font-serif font-bold">Stay</AuroraText>
           </motion.h1>
-          <p className="text-neutral-500 text-center mb-10 max-w-lg mx-auto">
+          <p className="text-white/60 text-center mb-10 max-w-lg mx-auto">
             Complete the steps below — concierge confirms within {RESPONSE_TIME}. Pay at property.
           </p>
+        </div>
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
+          {heroImages.map((_, i) => (
+            <button key={i} onClick={() => setHeroIndex(i)} aria-label={`Go to slide ${i + 1}`} className={`transition-all duration-400 rounded-full ${i === heroIndex ? "w-8 h-2 bg-primary" : "w-2 h-2 bg-white/40 hover:bg-white/70"}`} />
+          ))}
+        </div>
+      </section>
+      <section className="py-16 bg-neutral-50 min-h-screen relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(197,165,90,0.07),transparent_60%)] pointer-events-none" />
+        <div className="max-w-4xl mx-auto px-6 relative" ref={topRef}>
 
           {/* Progress */}
           <div className="flex items-center justify-center gap-0 mb-12">

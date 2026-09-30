@@ -168,13 +168,14 @@ export const AMENITIES_HERO = [...IMAGES.snookerBar.photos] as const
 /** Events hero — every event-hall photo, in order. Nothing else. */
 export const EVENTS_HERO = [...IMAGES.eventHall.photos] as const
 
+/** Contact hero — every front-desk photo, in order. Nothing else. */
+export const CONTACT_HERO = [...IMAGES.frontDesk.photos] as const
+
 export const TESTIMONIALS_HERO = [
   IMAGES.gold.photos[0],
   IMAGES.lounge.photos[0],
   IMAGES.majesty.photos[0],
 ] as const
-
-export const ABOUT_HERO = IMAGES.exterior.photos[0]
 
 /** Categories drive the gallery filter pills. */
 export const GALLERY_CATEGORIES = [
