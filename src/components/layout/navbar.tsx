@@ -140,7 +140,7 @@ export default function Navbar() {
                       </summary>
                       <div className="ml-4 mt-1 space-y-1 border-l border-neutral-100 pl-4">
                         {link.dropdown.map((item) => (
-                          <Link key={item.href} href={item.href} onClick={() => setMobileOpen(false)} className="block py-2.5 text-sm text-neutral-500 hover:text-primary">
+                          <Link key={item.label} href={item.href} onClick={() => setMobileOpen(false)} className="block py-2.5 text-sm text-neutral-500 hover:text-primary">
                             {item.label}
                           </Link>
                         ))}

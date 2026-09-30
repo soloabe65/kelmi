@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { motion, AnimatePresence, type Variants } from "framer-motion"
-import { ArrowRight } from "lucide-react"
+import CtaBanner from "@/components/ui/cta-banner"
 import { AuroraText } from "@/components/magicui/aurora-text"
 import { IMAGES } from "@/lib/images"
 
@@ -78,8 +78,8 @@ const ROOMS: Room[] = [
     type: "royal",
     description: "Elevated elegance — spacious lounge, forest views, premium minibar and rain shower.",
     price: 40000,
-    image: IMAGES.executive.lead,
-    images: [...IMAGES.executive.photos],
+    image: IMAGES.gold.photos[1],
+    images: IMAGES.gold.photos.slice(1),
     amenities: ["Forest Views", "Premium Minibar", "Rain Shower", "Work Desk", "Lounge Access"],
     badge: "Most Popular",
     href: "/suites/presidential",
@@ -250,19 +250,8 @@ export default function SuitesPage() {
         </div>
       </section>
 
-      {/* CTA — Beechnut navy, Kelmi premium */}
-      <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="py-16 bg-secondary text-center relative overflow-hidden">
-        <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <span className="text-xs font-semibold tracking-[0.24em] uppercase text-primary block mb-2">Direct Booking Advantage</span>
-          <h2 className="font-serif text-3xl lg:text-4xl font-bold text-white mb-3">
-            Book Direct & <em className="text-primary not-italic">Save More</em>
-          </h2>
-          <p className="text-white/60 mb-6">Best available rates at kelmilodgeandeventhall.com — complimentary early check-in (subject to availability) and direct perks.</p>
-          <Link href="/book" className="inline-flex items-center gap-2 px-8 py-4 text-sm font-semibold tracking-wider uppercase rounded-full bg-primary text-secondary hover:bg-primary-dark transition-colors">
-            Reserve a Room <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      </motion.section>
+      {/* CTA — shared canonical banner */}
+      <CtaBanner />
     </>
   )
 }

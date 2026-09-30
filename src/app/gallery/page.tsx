@@ -1,11 +1,12 @@
 "use client"
 
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { useState, useEffect } from "react"
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion"
 import { X, ChevronLeft, ChevronRight, Sparkles, Expand } from "lucide-react"
 import { Section } from "@/components/ui/section"
 import { AuroraText } from "@/components/magicui/aurora-text"
-import { GALLERY, GALLERY_CATEGORIES } from "@/lib/images"
+import { GALLERY, GALLERY_CATEGORIES, GALLERY_HERO } from "@/lib/images"
+import CtaBanner from "@/components/ui/cta-banner"
 
 const categories = ["All", ...GALLERY_CATEGORIES]
 
@@ -14,6 +15,24 @@ const galleryItems = GALLERY
 export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState("All")
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
+  const [heroIndex, setHeroIndex] = useState(0)
+  const [paused, setPaused] = useState(false)
+  const reduceMotion = useReducedMotion()
+
+  // Faster than the other heroes; paused on hover, off when reduced motion is preferred.
+  useEffect(() => {
+    if (reduceMotion || paused || GALLERY_HERO.length < 2) return
+    const id = setInterval(() => setHeroIndex((p) => (p + 1) % GALLERY_HERO.length), 3500)
+    return () => clearInterval(id)
+  }, [reduceMotion, paused])
+
+  // Preload the next slide so crossfades never flash. One Image object only —
+  // the hero mounts a single slide at a time.
+  useEffect(() => {
+    if (GALLERY_HERO.length < 2) return
+    const next = new Image()
+    next.src = GALLERY_HERO[(heroIndex + 1) % GALLERY_HERO.length]
+  }, [heroIndex])
 
   const filtered = galleryItems.filter((item) => activeCategory === "All" || item.category === activeCategory)
   const openLightbox = (index: number) => setLightboxIndex(index)
@@ -26,12 +45,30 @@ export default function GalleryPage() {
 
   return (
     <>
-      <section className="relative pt-32 pb-20 bg-secondary overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(197,165,90,0.16),transparent_60%)]" />
-        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
+      <section
+        className="relative pt-32 pb-20 bg-secondary overflow-hidden min-h-[560px] flex items-center"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={heroIndex}
+            initial={reduceMotion ? { opacity: 1 } : { opacity: 0, scale: 1.08 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: reduceMotion ? 0 : 1.4, ease: "easeInOut" }}
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${GALLERY_HERO[heroIndex]})` }}
+          />
+        </AnimatePresence>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/35 to-black/75" />
+        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center w-full">
           <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="inline-flex items-center gap-2 text-primary tracking-[0.2em] uppercase text-xs font-medium border border-primary/20 bg-white/10 px-4 py-1.5 rounded-full backdrop-blur"><Sparkles className="w-3 h-3" /> Gallery</motion.p>
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="font-serif text-4xl md:text-6xl text-white mt-6">A visual <AuroraText className="font-serif font-bold">journey</AuroraText></motion.h1>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-white/60 mt-4 max-w-2xl mx-auto text-lg">Filter by mood, tap to expand — every frame is Kelmi light, texture, and warmth.</motion.p>
+        </div>
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 rounded-full bg-black/40 backdrop-blur px-4 py-1.5 text-xs font-medium tabular-nums text-white/90" aria-live="polite">
+          {heroIndex + 1} / {GALLERY_HERO.length}
         </div>
       </section>
 
@@ -48,7 +85,7 @@ export default function GalleryPage() {
           <AnimatePresence mode="popLayout">
             {filtered.map((item, index) => (
               <motion.button
-                key={item.src}
+                key={`${item.src}-${index}`}
                 layout
                 initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -69,6 +106,8 @@ export default function GalleryPage() {
         </motion.div>
         {filtered.length === 0 && <p className="text-center text-neutral-500 mt-12">No images in this filter.</p>}
       </Section>
+
+      <CtaBanner />
 
       <AnimatePresence>
         {lightboxIndex !== null && (

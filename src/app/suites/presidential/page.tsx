@@ -6,13 +6,13 @@ import { ArrowRight, Sparkles, Crown } from "lucide-react"
 import { Section } from "@/components/ui/section"
 import { AuroraText } from "@/components/magicui/aurora-text"
 import { BorderBeam } from "@/components/magicui/border-beam"
-import { ShineBorder } from "@/components/magicui/shine-border"
+import CtaBanner from "@/components/ui/cta-banner"
 import { staggerContainer, staggerItem } from "@/lib/animations"
 import { IMAGES } from "@/lib/images"
 
 const suites = [
   { title: "Royal Executive Suite (Gold)", desc: "Flagship — panoramic terrace, private living, jacuzzi, butler. Our most prestigious.", image: IMAGES.gold.lead, price: "₦50,000", features: ["Panoramic Views", "Private Terrace", "Jacuzzi", "Butler Service"] },
-  { title: "Royal Executive Suite (Silver)", desc: "Elevated elegance — spacious lounge, forest views, premium minibar.", image: IMAGES.executive.lead, price: "₦40,000", features: ["Forest Views", "Spacious Lounge", "Premium Minibar", "Rain Shower"] },
+  { title: "Royal Executive Suite (Silver)", desc: "Elevated elegance — spacious lounge, forest views, premium minibar.", image: IMAGES.gold.photos[1], price: "₦40,000", features: ["Forest Views", "Spacious Lounge", "Premium Minibar", "Rain Shower"] },
   { title: "Presidential Apartment", desc: "Apartment-style — curated art, living area, kitchenette, garden terrace.", image: IMAGES.apartment.lead, price: "₦35,000", features: ["Living Area", "Kitchenette", "Garden Terrace", "Workstation"] },
 ]
 
@@ -50,16 +50,8 @@ export default function PresidentialPage() {
             </motion.div>
           ))}
         </motion.div>
-        <div className="max-w-3xl mx-auto mt-12">
-          <ShineBorder borderWidth={1} duration={14} shineColor={["#C5A55A","#E8D5B5"]} className="bg-neutral-50">
-            <div className="p-7 text-center">
-              <h3 className="font-serif text-xl text-secondary">See the full collection</h3>
-              <p className="text-sm text-neutral-500 mt-1">All 6 classes from Classic ₦20k to Gold ₦50k.</p>
-              <Link href="/suites" className="inline-flex items-center gap-2 mt-4 bg-white border border-neutral-200 px-6 py-3 rounded-full text-sm font-medium hover:bg-neutral-100">View all rooms <ArrowRight className="w-3.5 h-3.5" /></Link>
-            </div>
-          </ShineBorder>
-        </div>
       </Section>
+      <CtaBanner />
     </>
   )
 }

@@ -8,6 +8,7 @@ import { AuroraText } from "@/components/magicui/aurora-text"
 import { BorderBeam } from "@/components/magicui/border-beam"
 import { staggerContainer, staggerItem } from "@/lib/animations"
 import { IMAGES } from "@/lib/images"
+import CtaBanner from "@/components/ui/cta-banner"
 
 const rooms = [
   { title: "Royal Majesty Room", desc: "Regal comfort — garden outlook, handcrafted timber, tea ritual.", image: IMAGES.majesty.lead, price: "₦30,000", features: ["Garden Access", "Tea Station", "Walk-in Closet", "King Bed"] },
@@ -50,6 +51,7 @@ export default function StandardRoomsPage() {
           ))}
         </motion.div>
       </Section>
+      <CtaBanner />
     </>
   )
 }

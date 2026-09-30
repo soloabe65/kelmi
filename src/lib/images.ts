@@ -149,7 +149,9 @@ export const IMAGES = {
       "/images/exterior/exterior-07.webp",
       "/images/exterior/exterior-08.webp",
       "/images/exterior/exterior-09.webp",
-      "/images/exterior/exterior-10.webp",
+      "/images/exterior/exterior-010.webp",
+      "/images/exterior/exterior-011.webp",
+      "/images/exterior/exterior-012.webp",
     ],
   },
 
@@ -157,13 +159,14 @@ export const IMAGES = {
   logo: "/images/logo/logo-01.webp",
 } as const
 
-/** 4-slide homepage hero. */
-export const HOME_HERO = [
-  IMAGES.exterior.photos[0],
-  IMAGES.gold.photos[0],
-  IMAGES.eventHall.photos[0],
-  IMAGES.lounge.photos[0],
-] as const
+/** Homepage hero — every exterior photo, in order. Nothing else. */
+export const HOME_HERO = [...IMAGES.exterior.photos] as const
+
+/** Amenities hero — every snooker-bar photo, in order. Nothing else. */
+export const AMENITIES_HERO = [...IMAGES.snookerBar.photos] as const
+
+/** Events hero — every event-hall photo, in order. Nothing else. */
+export const EVENTS_HERO = [...IMAGES.eventHall.photos] as const
 
 export const TESTIMONIALS_HERO = [
   IMAGES.gold.photos[0],
@@ -239,3 +242,19 @@ export const GALLERY: readonly {
     category: "Exterior" as const,
   })),
 ] as const
+
+/** Gallery hero — every unique gallery photo in stable grid order.
+ *  Deduped by src (first occurrence wins); logo and non-photo assets excluded.
+ *  Derived from GALLERY so the hero updates whenever the grid does. */
+export const GALLERY_HERO: string[] = (() => {
+  const seen = new Set<string>()
+  const out: string[] = []
+  for (const item of GALLERY) {
+    if (!item.src.endsWith(".webp")) continue
+    if (item.src.includes("/logo/")) continue
+    if (seen.has(item.src)) continue
+    seen.add(item.src)
+    out.push(item.src)
+  }
+  return out
+})()

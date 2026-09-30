@@ -49,3 +49,9 @@ export const LOCATION = {
 
 /** Booking and contact response promise. Shown on /book and /contact. */
 export const RESPONSE_TIME = "2 hours"
+
+/** Live Google Business Profile rating. Every rating display reads from here — never hardcode it. No review count is stated anywhere (none provided). */
+export const GOOGLE_RATING = 3.8
+
+/** Google Business Profile — every rating display links here. */
+export const GOOGLE_PROFILE_URL = "https://share.google/fjmXaQl5N6F7pZ6Vn"

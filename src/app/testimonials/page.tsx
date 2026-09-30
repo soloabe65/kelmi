@@ -1,11 +1,12 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import Link from "next/link"
+import CtaBanner from "@/components/ui/cta-banner"
 import { motion, AnimatePresence, type Variants } from "framer-motion"
 import { Star, Quote } from "lucide-react"
 import { AuroraText } from "@/components/magicui/aurora-text"
 import { TESTIMONIALS_HERO } from "@/lib/images"
+import { GOOGLE_RATING, GOOGLE_PROFILE_URL } from "@/lib/site"
 
 const heroBgVariants: Variants = {
   enter: { opacity: 0, scale: 1.08 },
@@ -138,14 +139,14 @@ export default function TestimonialsPage() {
       <section className="bg-secondary border-t border-white/10" aria-label="Overall rating">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex items-center justify-center gap-6 flex-wrap">
-            <span className="font-serif text-5xl font-bold text-primary leading-none">4.9</span>
+            <a href={GOOGLE_PROFILE_URL} target="_blank" rel="noopener noreferrer" aria-label={`Google rating ${GOOGLE_RATING} out of 5`} className="font-serif text-5xl font-bold text-primary leading-none hover:opacity-90 transition-opacity">{GOOGLE_RATING}</a>
             <div className="flex flex-col gap-1">
-              <Stars rating={5} />
-              <p className="text-xs text-white/60">Overall rating from our guests</p>
+              <Stars rating={Math.round(GOOGLE_RATING)} />
+              <p className="text-xs text-white/60">Overall Google rating from our guests</p>
             </div>
             <div className="w-px h-10 bg-white/15 hidden sm:block" />
             <p className="text-sm text-white/80">
-              <span className="font-bold text-white">6 reviews</span> from weddings, business & retreats
+              from weddings, business &amp; retreats
             </p>
           </div>
         </div>
@@ -159,7 +160,7 @@ export default function TestimonialsPage() {
             <h2 className="font-serif text-[clamp(2rem,4vw,3rem)] font-bold text-secondary leading-tight mb-2">
               Stories From Our <em className="text-primary not-italic">Guests</em>
             </h2>
-            <p className="text-neutral-500 max-w-lg mx-auto">Real words from real guests — same 6 reviews featured on our homepage, now in full.</p>
+            <p className="text-neutral-500 max-w-lg mx-auto">Real words from real guests — in full.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -212,27 +213,8 @@ export default function TestimonialsPage() {
         </div>
       </section>
 
-      {/* CTA — Beechnut dark */}
-      <section className="py-16 lg:py-24 bg-white" aria-label="Book your stay">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-gradient-to-br from-secondary to-[#0f1f1f] rounded-lg p-8 lg:p-10 text-center relative overflow-hidden">
-            <div className="absolute -top-40 -left-40 w-80 h-80 rounded-full bg-primary/5 pointer-events-none" />
-            <div className="relative z-10">
-              <h3 className="font-serif text-2xl lg:text-3xl font-bold text-white mb-4">Experience It Yourself</h3>
-              <div className="w-12 h-0.5 bg-primary mx-auto mb-4" />
-              <p className="text-white/60 text-lg leading-relaxed max-w-2xl mx-auto mb-6">Words only say so much — come and create your own Kelmi story. Your comfort, our promise.</p>
-              <div className="flex gap-3 flex-wrap justify-center">
-                <Link href="/book" className="inline-flex items-center gap-2 px-8 py-3 text-sm font-semibold tracking-wider uppercase rounded-full bg-primary text-secondary hover:bg-primary-dark transition-colors">
-                  Book Now
-                </Link>
-                <Link href="/contact" className="inline-flex items-center gap-2 px-8 py-3 text-sm font-semibold tracking-wider uppercase rounded-full border-2 border-primary text-white hover:bg-primary hover:text-secondary transition-colors">
-                  Get in Touch
-                </Link>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      {/* CTA — shared canonical banner */}
+      <CtaBanner />
     </>
   )
 }

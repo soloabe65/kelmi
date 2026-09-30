@@ -1,12 +1,13 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Phone, Mail, MapPin, Clock, Send, Sparkles, MessageCircle, ArrowRight } from "lucide-react"
+import { Phone, Mail, MapPin, Clock, Send, Sparkles, MessageCircle } from "lucide-react"
 import { Section } from "@/components/ui/section"
 import { AuroraText } from "@/components/magicui/aurora-text"
 import { ShineBorder } from "@/components/magicui/shine-border"
 import { fadeUp, staggerContainer } from "@/lib/animations"
 import { toast, Toaster } from "sonner"
+import CtaBanner from "@/components/ui/cta-banner"
 import { ADDRESS, CONTACT, LOCATION, RESPONSE_TIME } from "@/lib/site"
 
 const contactInfo = [
@@ -131,13 +132,7 @@ export default function ContactPage() {
         </div>
       </Section>
 
-      <Section className="bg-neutral-50 border-t border-neutral-200">
-        <div className="max-w-3xl mx-auto text-center">
-          <h3 className="font-serif text-2xl text-secondary">Prefer to book direct?</h3>
-          <p className="text-sm text-neutral-500 mt-2">Best rate guaranteed, free cancellation, and pay-at-property on direct bookings.</p>
-          <a href="/book" className="inline-flex items-center gap-2 mt-6 bg-primary text-secondary px-8 py-4 rounded-full font-medium hover:bg-primary-dark transition-colors">Go to booking <ArrowRight className="w-4 h-4" /></a>
-        </div>
-      </Section>
+      <CtaBanner />
     </>
   )
 }

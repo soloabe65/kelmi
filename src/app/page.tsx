@@ -3,15 +3,15 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
-import { ArrowRight, MapPin, Phone, Sparkles, PartyPopper, Trophy, Calendar, Users, Award, ChevronRight, Landmark } from "lucide-react"
+import { ArrowRight, MapPin, Phone, Sparkles, PartyPopper, Trophy, Calendar, Users, ChevronRight, Landmark } from "lucide-react"
 import { fadeUp, staggerContainer } from "@/lib/animations"
 import { HOME_HERO, IMAGES } from "@/lib/images"
-import { ADDRESS, CONTACT, LOCATION, RESPONSE_TIME } from "@/lib/site"
+import { ADDRESS, CONTACT, LOCATION, GOOGLE_RATING, GOOGLE_PROFILE_URL } from "@/lib/site"
 import { Section, SectionHeader } from "@/components/ui/section"
 import { AuroraText } from "@/components/magicui/aurora-text"
 import { BorderBeam } from "@/components/magicui/border-beam"
 import { BentoGrid, BentoCard } from "@/components/magicui/bento-grid"
-import { ShineBorder } from "@/components/magicui/shine-border"
+import CtaBanner from "@/components/ui/cta-banner"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import { Drawer, DrawerContent, DrawerTrigger, DrawerTitle, DrawerDescription, DrawerHeader } from "@/components/ui/drawersheet"
 import { Toaster, toast } from "sonner"
@@ -30,7 +30,7 @@ const suites = [
   {
     title: "Royal Executive Suite (Silver)",
     desc: "Elevated elegance — spacious lounge, premium minibar and rain shower.",
-    image: IMAGES.executive.lead,
+    image: IMAGES.gold.photos[1],
     price: "₦40,000",
     badge: "Most Booked",
     href: "/suites/presidential",
@@ -150,12 +150,18 @@ export default function Home() {
           className="hidden lg:flex absolute top-28 right-8 z-20 flex-col gap-3"
         >
           {[
-            { k: "4.9/5", v: "Guest rating" },
-            { k: "500+", v: "Events hosted" },
-            { k: "24/7", v: "Concierge" },
+            { k: `${GOOGLE_RATING}/5`, v: "Guest rating", href: GOOGLE_PROFILE_URL },
+            { k: "500+", v: "Events hosted", href: "" },
+            { k: "24/7", v: "Concierge", href: "" },
           ].map((s) => (
             <div key={s.k} className="glass-dark rounded-2xl px-5 py-3 min-w-[160px]">
-              <p className="text-white font-semibold leading-none text-lg">{s.k}</p>
+              <p className="text-white font-semibold leading-none text-lg">
+                {s.href ? (
+                  <a href={s.href} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">{s.k}</a>
+                ) : (
+                  s.k
+                )}
+              </p>
               <p className="text-white/60 text-xs">{s.v}</p>
             </div>
           ))}
@@ -219,7 +225,7 @@ export default function Home() {
             </motion.div>
 
             <motion.div variants={fadeUp} className="flex items-center justify-center gap-6 pt-4 text-white/60 text-xs">
-              <span className="flex items-center gap-1.5"><Award className="w-3.5 h-3.5 text-primary" /> Award-winning</span>
+              <span className="flex items-center gap-1.5"><Sparkles className="w-3.5 h-3.5 text-primary" /> Delta&apos;s hidden gem</span>
               <span className="w-1 h-1 rounded-full bg-white/30" />
               <span className="flex items-center gap-1.5"><Users className="w-3.5 h-3.5 text-primary" /> 500+ events</span>
               <span className="w-1 h-1 rounded-full bg-white/30 hidden sm:block" />
@@ -248,13 +254,19 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-r from-primary/[0.04] via-transparent to-primary/[0.04]" />
         <div className="relative max-w-7xl mx-auto px-6 py-8 grid grid-cols-2 lg:grid-cols-4 gap-8">
           {[
-            { value: "500+", label: "Events hosted", sub: "Weddings & conferences" },
-            { value: "4.9", label: "Guest rating", sub: "Verified guest reviews" },
-            { value: "6", label: "Room classes", sub: "₦20,000 – ₦50,000" },
-            { value: "24/7", label: "Concierge", sub: "Dedicated service" },
+            { value: "500+", label: "Events hosted", sub: "Weddings & conferences", href: "" },
+            { value: `${GOOGLE_RATING}`, label: "Guest rating", sub: "Verified guest reviews", href: GOOGLE_PROFILE_URL },
+            { value: "6", label: "Room classes", sub: "₦20,000 – ₦50,000", href: "" },
+            { value: "24/7", label: "Concierge", sub: "Dedicated service", href: "" },
           ].map((s, i) => (
             <motion.div key={s.label} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.07 }} className="text-center lg:text-left">
-              <p className="font-serif text-2xl text-secondary">{s.value}</p>
+              <p className="font-serif text-2xl text-secondary">
+                {s.href ? (
+                  <a href={s.href} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">{s.value}</a>
+                ) : (
+                  s.value
+                )}
+              </p>
               <p className="text-sm font-medium text-secondary">{s.label}</p>
               <p className="text-xs text-neutral-400">{s.sub}</p>
             </motion.div>
@@ -403,34 +415,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA — ShineBorder + DaisyUI + HeroUI */}
-      <section className="py-20 md:py-28 bg-neutral-50">
-        <div className="max-w-4xl mx-auto px-6">
-          <ShineBorder borderWidth={1} duration={12} shineColor={["#C5A55A", "#D4A574", "#E8D5B5"]} className="bg-white shadow-[0_16px_48px_rgba(0,0,0,0.07)]">
-            <div className="text-center p-8 md:p-12 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.06] via-transparent to-secondary/[0.03] pointer-events-none" />
-              <span className="relative inline-flex items-center gap-2 bg-secondary text-white px-4 py-1.5 rounded-full text-xs tracking-[0.16em] uppercase font-medium">
-                <Sparkles className="w-3 h-3 text-primary" /> Begin Your Journey
-              </span>
-              <h2 className="relative font-serif text-3xl md:text-[42px] mt-4 text-secondary leading-tight">
-                Ready to experience <AuroraText className="font-serif font-bold">Kelmi</AuroraText>?
-              </h2>
-              <p className="relative mt-4 text-neutral-500 max-w-xl mx-auto">
-                Book your stay, plan your event, or simply reach out. Our team replies within {RESPONSE_TIME} — best rate when you book direct.
-              </p>
-              <div className="relative flex flex-wrap gap-3 justify-center mt-8">
-                <Link href="/book" onClick={() => toast.success("Redirecting to booking...")} className="inline-flex items-center gap-2 bg-secondary text-white px-8 py-4 rounded-full font-medium hover:bg-black transition-colors shadow-lg">
-                  Make a Reservation <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link href="/events" className="inline-flex items-center gap-2 bg-white border border-neutral-200 text-secondary px-8 py-4 rounded-full font-medium hover:bg-neutral-50 transition-colors">
-                  Plan an Event
-                </Link>
-              </div>
-              <p className="relative mt-6 text-xs text-neutral-400">No booking fees • Free cancellation on direct bookings • Pay at property</p>
-            </div>
-          </ShineBorder>
-        </div>
-      </section>
+      <CtaBanner />
     </>
   )
 }

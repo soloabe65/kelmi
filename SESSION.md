@@ -78,7 +78,7 @@ The old "Oloje Street" footer address and the "KM 48" home-page copy are both go
 | `/about` | `src/app/about/page.tsx` | 60vh hero - GM welcome letter (signed "Kelmi Management") - Overview - Vision - Mission - Brand Promises - Service Philosophy - Quality Policy - 10 Core Values - 6-point Charter - 8-point Conduct - 10 Services - `ShineBorder` Commitment |
 | `/contact` | `src/app/contact/page.tsx` | 4 info cards - **real embedded map** + directions link - form (Name/Email/Phone/Subject/Message) that **hands the enquiry to WhatsApp** - email fallback - CTA |
 | `/book` | `src/app/book/page.tsx` | 3-step wizard + success screen (see Booking Funnel) |
-| `/testimonials` | `src/app/testimonials/page.tsx` | 60vh rotating hero - "4.9 / 6 reviews" rating bar - 6 review cards (initials avatars, 2 badged "New", "via Google") - 3 dashed **video placeholders** - dark CTA |
+| `/testimonials` | `src/app/testimonials/page.tsx` | 60vh rotating hero - "3.8" Google rating bar (no review count stated) - review cards (initials avatars, 2 badged "New", "via Google") - 3 dashed **video placeholders** - shared CTA |
 
 > **All 11 pages are `"use client"`** (line 1 of each). No page is a Server Component, which is why no page can export `generateMetadata` today.
 

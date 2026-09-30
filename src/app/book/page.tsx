@@ -6,6 +6,7 @@ import Link from "next/link"
 import { ArrowRight, Check, ChevronLeft, Home, Send, Copy, Calendar, Users, Sparkles, AlertTriangle } from "lucide-react"
 import { AuroraText } from "@/components/magicui/aurora-text"
 import { Toaster } from "sonner"
+import CtaBanner from "@/components/ui/cta-banner"
 import { IMAGES } from "@/lib/images"
 import { CONTACT, RESPONSE_TIME } from "@/lib/site"
 
@@ -22,7 +23,7 @@ const rooms = [
   {
     id: "silver",
     title: "Royal Executive Suite (Silver)",
-    image: IMAGES.executive.lead,
+    image: IMAGES.gold.photos[1],
     price: 40000,
     amenities: ["Forest Views", "Spacious Lounge", "Premium Minibar", "Rain Shower"],
   },
@@ -623,6 +624,7 @@ export default function BookingPage() {
           </AnimatePresence>
         </div>
       </section>
+      <CtaBanner />
     </>
   )
 }

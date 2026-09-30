@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { Award, Crown, ArrowRight, Check } from "lucide-react"
 import { IMAGES } from "@/lib/images"
 import { ADDRESS } from "@/lib/site"
+import CtaBanner from "@/components/ui/cta-banner"
 import { AuroraText } from "@/components/magicui/aurora-text"
 import { ShineBorder } from "@/components/magicui/shine-border"
 import { BorderBeam } from "@/components/magicui/border-beam"
@@ -249,13 +250,9 @@ export default function AboutPage() {
             </div>
           </ShineBorder>
 
-          <div className="text-center mt-12">
-            <Link href="/book" className="inline-flex items-center gap-2 px-8 py-4 text-sm font-semibold tracking-wider uppercase rounded-full bg-secondary text-white hover:bg-black transition-colors">
-              Book Your Stay <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
         </div>
       </section>
+      <CtaBanner />
     </>
   )
 }
